@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { AppBar, Box, Button, Fade, Toolbar, useScrollTrigger } from '@mui/material';
 import { Container } from '@mui/system';
 import { ShoppingCart as ShoppingCartIcon } from '@icons/shopping-cart';
@@ -36,18 +37,26 @@ function ScrollTop() {
             minHeight: '6vh',
           }}
         >
-          <Button>
-            <VolumeUpIcon />
-          </Button>
-          <Button>
-            <ArchiveIcon />
-          </Button>
-          <Button>
-            <AcademicCapIcon />
-          </Button>
-          <Button>
-            <ShoppingCartIcon />
-          </Button>
+          <NextLink href="/" passHref>
+            <Button>
+              <VolumeUpIcon />
+            </Button>
+          </NextLink>
+          <NextLink href="/inventory" passHref>
+            <Button>
+              <ArchiveIcon />
+            </Button>
+          </NextLink>
+          <NextLink href="/" passHref>
+            <Button>
+              <AcademicCapIcon />
+            </Button>
+          </NextLink>
+          <NextLink href="/marketplace" passHref>
+            <Button>
+              <ShoppingCartIcon />
+            </Button>
+          </NextLink>
         </Box>
       </Box>
     </Fade>
