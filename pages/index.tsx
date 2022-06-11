@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head';
+import NextLink from 'next/link';
 import React, { useState } from 'react';
 import { AuthGuard } from '@components/authentication/auth-guard';
 import { MainLayout } from '@layouts/main-layout';
@@ -33,8 +34,6 @@ const energyCap = {
 
 const Home: Page = () => {
   const [val, setVal] = useState(true);
-
-  console.log(earningCap.currentEarn / earningCap.dailyMax);
 
   return (
     <>
@@ -417,9 +416,11 @@ const Home: Page = () => {
             </Stack>
             <Stack spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Button variant="contained" sx={{ px: 3 }}>
-                  GO TO PLAYLIST
-                </Button>
+                <NextLink href="/playlist" passHref>
+                  <Button variant="contained" sx={{ px: 3 }}>
+                    GO TO PLAYLIST
+                  </Button>
+                </NextLink>
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <span style={{ fontSize: '12px', textDecoration: 'underline' }}>How to earn?</span>
