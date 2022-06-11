@@ -5,9 +5,10 @@ import { MyWalletSideBar } from '@components/my-wallet/my-wallet-side-bar';
 import styled from '@emotion/styled';
 import { Box, Slide } from '@mui/material';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { PullToRefresh, PullDownContent, ReleaseContent, RefreshContent } from 'react-js-pull-to-refresh';
 
 interface MainLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactElement;
 }
 
 const MainLayoutRoot = styled('div')(() => ({
@@ -33,7 +34,21 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
             width: '100%',
           }}
         >
-          {children}
+          <PullToRefresh
+            pullDownContent={<PullDownContent />}
+            releaseContent={<ReleaseContent />}
+            refreshContent={<RefreshContent />}
+            pullDownThreshold={200}
+            onRefresh={() =>
+              new Promise((resolve) => {
+                setTimeout(resolve, 1000);
+              })
+            }
+            triggerHeight={1000}
+            backgroundColor="white"
+          >
+            {children}
+          </PullToRefresh>
         </Box>
       </MainLayoutRoot>
       <MainNavBar onOpenMyProfile={() => setIsMyProfileOpen(true)} onOpenMyWallet={() => setIsMyWalletOpen(true)} />

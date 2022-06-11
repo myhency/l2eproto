@@ -1,5 +1,5 @@
 import { Box, Drawer, IconButton, Stack } from '@mui/material';
-import { ChevronLeft as ChevronLeftIcon } from '../../icons/chevron-left';
+import { ChevronLeft as ChevronLeftIcon } from '@icons/chevron-left';
 
 interface MyProfileSideBarProps {
   onClose: () => void;
