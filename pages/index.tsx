@@ -19,7 +19,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 // import required modules
-import { Pagination, Navigation } from 'swiper';
+import { Navigation } from 'swiper';
 
 const earningCap = {
   dailyMax: 50,
