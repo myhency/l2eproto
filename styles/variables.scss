@@ -1,0 +1,29 @@
+@import './functions.scss';
+
+$container-max-width: 1440px;
+$container-horizontal-padding: pxToRem(100);
+$container-mobile-horizontal-padding: pxToRem(16);
+
+$header-height: pxToRem(60);
+$header-horizontal-padding: pxToRem(60);
+$header-mobile-horizontal-padding: pxToRem(20);
+
+$font-matao: 'MaTaoFree-Demo';
+$font-gilroy-bold: 'Gilroy-Bold';
+$font-gilroy-regular: 'Gilroy-Regular';
+$font-gilroy-medium: 'Gilroy-Medium';
+$font-gilroy-semiBold: 'Gilroy-SemiBold';
+$font-golden-bridge-script: 'Golden-Bridge-Script';
+$font-DMSans-bold: 'DMSans-Bold';
+$font-ZenDots: 'ZenDots';
+$font-Syncopate-Regular: 'Syncopate-Regular';
+$font-Syncopate-Bold: 'Syncopate-Bold';
+
+$breakpoints: (
+    xs: 320px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1536px,
+);

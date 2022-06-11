@@ -1,0 +1,119 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.title40 {
+    font-family: $font-matao;
+    font-size: pxToRem(40);
+    font-weight: bold;
+    line-height: pxToRem(47);
+    color: var(--color-white);
+}
+.title18 {
+    font-family: $font-gilroy-regular;
+    font-size: pxToRem(18);
+    line-height: pxToRem(28);
+}
+.titleBold18 {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(18);
+    line-height: pxToRem(24);
+}
+.titleNFTname {
+    font-family: $font-matao;
+    font-size: pxToRem(44);
+    line-height: pxToRem(64);
+}
+.title14 {
+    font-family: $font-gilroy-regular;
+    font-size: pxToRem(14) !important;
+    line-height: pxToRem(17);
+}
+.title14GiBold {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(14);
+    line-height: pxToRem(17);
+}
+.title16 {
+    font-family: $font-gilroy-regular;
+    font-size: pxToRem(16);
+    line-height: pxToRem(20);
+}
+.title20 {
+    font-family: $font-gilroy-regular;
+    font-size: pxToRem(20);
+    line-height: pxToRem(28);
+}
+.title26Matao {
+    font-family: $font-matao;
+    font-size: pxToRem(26);
+    line-height: pxToRem(31);
+}
+.title16GiBold {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(16);
+    line-height: pxToRem(24);
+}
+.title28GiBold {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(28);
+    line-height: pxToRem(33);
+}
+.title26GiBold {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(26);
+    line-height: pxToRem(24);
+}
+.title24GiBold {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(24);
+    line-height: pxToRem(28);
+}
+
+.title24Gi1 {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(24);
+    line-height: pxToRem(24);
+}
+
+.title48 {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(48);
+    line-height: pxToRem(56);
+}
+.title32Gi {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(32);
+    line-height: pxToRem(40);
+}
+
+.title30 {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(30);
+    line-height: pxToRem(34);
+}
+
+.title30GiSemiBold {
+    font-family: $font-gilroy-semiBold;
+    font-size: pxToRem(30);
+    line-height: pxToRem(34);
+}
+.title32 {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(32);
+    line-height: pxToRem(34);
+}
+.title32Matao {
+    font-family: $font-matao;
+    font-size: pxToRem(32);
+    line-height: pxToRem(37);
+}
+.title44Gi {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(44);
+    line-height: pxToRem(64);
+}
+.title36Gi {
+    font-family: $font-gilroy-bold;
+    font-size: pxToRem(36);
+    line-height: pxToRem(44);
+}
