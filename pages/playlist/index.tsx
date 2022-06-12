@@ -6,7 +6,6 @@ import React from 'react';
 import { AuthGuard } from '@components/authentication/auth-guard';
 import { MainLayout } from '@layouts/main-layout';
 import { Container } from '@mui/system';
-import { MainPlay as MainPlayIcon } from '@icons/main-play';
 import { Play as PlayIcon } from '@icons/play';
 import NextLink from 'next/link';
 
