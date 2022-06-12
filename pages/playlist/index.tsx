@@ -8,20 +8,21 @@ import { MainLayout } from '@layouts/main-layout';
 import { Container } from '@mui/system';
 import { MainPlay as MainPlayIcon } from '@icons/main-play';
 import { Play as PlayIcon } from '@icons/play';
+import NextLink from 'next/link';
 
 const playlist = [
-  { thumbnail: '/images/playlist-card-rainy-day.png', name: 'Rainy Day' },
-  { thumbnail: '/images/playlist-card-partytime.png', name: 'Party Time' },
-  { thumbnail: '/images/playlist-card-afternoon-cafe.png', name: 'Afternoon Cafe' },
-  { thumbnail: '/images/playlist-card-a-city-walk.png.png', name: 'A City Walk' },
-  { thumbnail: '/images/playlist-card-siesta.png', name: 'Siesta' },
-  { thumbnail: '/images/playlist-card-camping.png', name: 'Camping' },
-  { thumbnail: '/images/playlist-card-rainy-day.png', name: 'Rainy Day' },
-  { thumbnail: '/images/playlist-card-partytime.png', name: 'Party Time' },
-  { thumbnail: '/images/playlist-card-afternoon-cafe.png', name: 'Afternoon Cafe' },
-  { thumbnail: '/images/playlist-card-a-city-walk.png.png', name: 'A City Walk' },
-  { thumbnail: '/images/playlist-card-siesta.png', name: 'Siesta' },
-  { thumbnail: '/images/playlist-card-camping.png', name: 'Camping' },
+  { thumbnail: '/images/playlist-card-rainy-day.png', name: 'Rainy Day', id: '1' },
+  { thumbnail: '/images/playlist-card-partytime.png', name: 'Party Time', id: '2' },
+  { thumbnail: '/images/playlist-card-afternoon-cafe.png', name: 'Afternoon Cafe', id: '3' },
+  { thumbnail: '/images/playlist-card-a-city-walk.png.png', name: 'A City Walk', id: '4' },
+  { thumbnail: '/images/playlist-card-siesta.png', name: 'Siesta', id: '5' },
+  { thumbnail: '/images/playlist-card-camping.png', name: 'Camping', id: '6' },
+  { thumbnail: '/images/playlist-card-rainy-day.png', name: 'Rainy Day', id: '7' },
+  { thumbnail: '/images/playlist-card-partytime.png', name: 'Party Time', id: '8' },
+  { thumbnail: '/images/playlist-card-afternoon-cafe.png', name: 'Afternoon Cafe', id: '9' },
+  { thumbnail: '/images/playlist-card-a-city-walk.png.png', name: 'A City Walk', id: '10' },
+  { thumbnail: '/images/playlist-card-siesta.png', name: 'Siesta', id: '11' },
+  { thumbnail: '/images/playlist-card-camping.png', name: 'Camping', id: '12' },
 ];
 
 const Playlist: Page = () => {
@@ -97,18 +98,20 @@ const Playlist: Page = () => {
                       >
                         {v.name}
                       </span>
-                      <IconButton
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          position: 'absolute',
-                          right: 8,
-                          bottom: 8,
-                        }}
-                      >
-                        <PlayIcon style={{ color: 'rgba(255,255,255, 0.7)', width: '30px', height: '30px' }} />
-                      </IconButton>
+                      <NextLink href={`/player/${v.id}`} passHref>
+                        <IconButton
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            position: 'absolute',
+                            right: 8,
+                            bottom: 8,
+                          }}
+                        >
+                          <PlayIcon style={{ color: 'rgba(255,255,255, 0.7)', width: '30px', height: '30px' }} />
+                        </IconButton>
+                      </NextLink>
                     </Box>
                   </Grid>
                 );
