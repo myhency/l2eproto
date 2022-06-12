@@ -4,6 +4,7 @@ import type { Page } from '../types/page';
 import { AuthConsumer, AuthProvider } from '../contexts/jwt-context';
 
 import '@styles/swiper.styles.css';
+import '@styles/global.scss';
 
 // this should give a better typing
 type Props = AppProps & {

@@ -43,7 +43,7 @@ const Home: Page = () => {
       </Head>
 
       <Box component="main">
-        <Container sx={{ height: '88vh' }}>
+        <Container sx={{ height: '88vh', paddingTop: '20px' }}>
           <Paper
             elevation={8}
             sx={{

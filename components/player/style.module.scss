@@ -1,0 +1,682 @@
+@import '@styles/functions';
+@import '@styles/variables.scss';
+@import '@styles/mixins';
+
+.nftInfoSection {
+    background-color: var(--color-white);
+}
+
+.nftInfoWrapper {
+    max-width: $container-max-width;
+    margin: auto;
+    padding: pxToRem(8) $container-horizontal-padding 0;
+
+    @include media-breakpoint-below(md) {
+        padding: pxToRem(0) $container-mobile-horizontal-padding;
+    }
+
+    .nftCreator {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: pxToRem(13);
+
+        @include media-breakpoint-below(sm) {
+            gap: pxToRem(8);
+        }
+
+        span {
+            font-size: pxToRem(44);
+            font-family: $font-golden-bridge-script;
+            color: var(--color-black);
+            line-height: pxToRem(48);
+
+            @include media-breakpoint-below(md) {
+                font-size: pxToRem(34);
+                line-height: pxToRem(36);
+            }
+        }
+
+        .dropsCreatorIconX {
+            width: pxToRem(16);
+            height: pxToRem(16);
+            object-fit: contain;
+        }
+
+        .dropsCreatorIconTrack {
+            width: pxToRem(176);
+        }
+    }
+
+    .nftInfo {
+        width: pxToRem(232);
+        padding-top: pxToRem(68);
+
+        @include media-breakpoint-below(lg) {
+            width: 100%;
+            order: 3;
+            padding-top: 0;
+        }
+
+        &Row {
+            display: flex;
+            margin: pxToRem(36) 0 pxToRem(25);
+
+            @include media-breakpoint-below(lg) {
+                flex-direction: column;
+                margin: pxToRem(26) 0 pxToRem(25);
+            }
+        }
+
+        .nftOwner,
+        .nftTotalRow {
+            font-size: pxToRem(16);
+            display: flex;
+            line-height: pxToRem(19);
+            font-family: $font-gilroy-regular;
+            color: var(--color-grey-2);
+
+            .nftOwnerName {
+                font-family: $font-gilroy-bold;
+                text-decoration: underline;
+                text-underline-offset: pxToRem(4);
+            }
+        }
+
+        .nftOwnerList {
+            cursor: pointer;
+        }
+
+        .nftTotalRow {
+            margin: pxToRem(8) 0 pxToRem(16);
+
+            .nftTotalNo {
+                font-family: $font-gilroy-bold;
+            }
+        }
+
+        .nftTotalDivider {
+            border-left: 1px solid var(--color-black-6);
+            height: pxToRem(24);
+            margin: 0 pxToRem(12);
+        }
+
+        .nftName {
+            font-size: pxToRem(32);
+            line-height: pxToRem(37);
+            font-family: $font-matao;
+            margin-bottom: pxToRem(12);
+            color: var(--color-black-2);
+            letter-spacing: -0.025em;
+
+            @include media-breakpoint-below(lg) {
+                margin-bottom: pxToRem(16);
+            }
+        }
+
+        .nftDescription {
+            font-size: pxToRem(18);
+            line-height: pxToRem(28);
+            font-family: $font-gilroy-regular;
+            color: var(--color-black-2);
+            margin: 0;
+
+            @include media-breakpoint-below(lg) {
+                margin-bottom: pxToRem(24);
+            }
+        }
+    }
+
+    .nftMedia {
+        flex: 1;
+        position: relative;
+
+        @include media-breakpoint-below(lg) {
+            order: 1;
+        }
+    }
+
+    .nftControl {
+        position: relative;
+
+        &Gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        &>div {
+            margin: auto;
+
+            @include media-breakpoint-below(1380px) {
+                width: pxToRem(490) !important;
+                height: pxToRem(490) !important;
+            }
+
+            @include media-breakpoint-below(632px) {
+                width: pxToRem(380) !important;
+                height: pxToRem(380) !important;
+            }
+
+            @include media-breakpoint-below(sm) {
+                width: pxToRem(342) !important;
+                height: pxToRem(342) !important;
+            }
+
+            @include media-breakpoint-below(374px) {
+                width: pxToRem(300) !important;
+                height: pxToRem(300) !important;
+            }
+
+            @include media-breakpoint-below(333px) {
+                width: pxToRem(210) !important;
+                height: pxToRem(210) !important;
+            }
+        }
+
+        >div>div {
+            width: 100% !important;
+            height: 100%;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
+
+        &Image,
+        &HiddenActiveTrack {
+            circle {
+                fill: transparent !important;
+            }
+        }
+
+        circle {
+            r: 5px;
+            fill: var(--color-black-2);
+
+            @include media-breakpoint-below(sm) {
+                r: 3px;
+            }
+        }
+    }
+
+    .nftModal {
+        &Title {
+            text-align: center;
+        }
+    }
+
+    .nftPreview {
+        position: relative;
+        object-fit: cover;
+        border-radius: 100%;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-black-6);
+
+        &Wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 91%;
+            height: 91%;
+
+            @include media-breakpoint-below(1381px) {
+                width: 88%;
+                height: 88%;
+            }
+
+            @include media-breakpoint-below(632px) {
+                width: 85%;
+                height: 85%;
+            }
+
+            @include media-breakpoint-below(sm) {
+                width: 83%;
+                height: 83%;
+            }
+
+            @include media-breakpoint-below(376px) {
+                width: 71%;
+                height: 71%;
+                top: 44%;
+                left: 44%
+            }
+
+            @include media-breakpoint-below(333px) {
+                width: 73%;
+                height: 73%;
+            }
+        }
+
+        &Image {
+            border-radius: 100%;
+        }
+    }
+
+    .nftBookmarkCol {
+        width: pxToRem(235);
+        padding-left: pxToRem(50);
+        padding-top: pxToRem(98);
+        display: flex;
+        flex-direction: column;
+        row-gap: pxToRem(5);
+
+        @include media-breakpoint-below(xl) {
+            width: pxToRem(180);
+            padding-left: pxToRem(40);
+        }
+
+        @include media-breakpoint-below(lg) {
+            order: 4;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: row;
+            column-gap: pxToRem(10);
+            padding-top: 0;
+            padding-left: 0;
+            width: 100%;
+
+            >*+* {
+                margin-left: pxToRem(0);
+            }
+        }
+
+        @include media-breakpoint-below(md) {
+            display: block;
+            width: 90%;
+
+            >*+* {
+                margin-left: pxToRem(0);
+            }
+
+            &Item {
+                display: inline-block;
+                margin-right: pxToRem(20);
+            }
+        }
+    }
+
+    .nftInfoNumber {
+        font-size: pxToRem(18);
+        line-height: pxToRem(24);
+        color: var(--color-black-2);
+    }
+
+    .nftInfoShare,
+    .nftInfoEther {
+        cursor: pointer;
+        color: var(--color-black);
+        font-size: pxToRem(18);
+    }
+
+    .nftInfoIcon {
+        width: pxToRem(20);
+        display: flex;
+        justify-content: center;
+        margin-right: pxToRem(14);
+    }
+
+    .mediaControl {
+        margin-bottom: pxToRem(34);
+
+        &HiddenMobile {
+            display: block;
+
+            @include media-breakpoint-below(lg) {
+                display: none;
+            }
+        }
+
+        &VisibleMobile {
+            display: none;
+
+            @include media-breakpoint-below(lg) {
+                display: block;
+                order: 2;
+            }
+        }
+
+        &Icon {
+            height: pxToRem(24);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            @include hover {
+                opacity: 0.6;
+            }
+
+            &:not(:last-child) {
+                margin-right: pxToRem(46);
+
+                @include media-breakpoint-below(md) {
+                    margin-right: pxToRem(20);
+                }
+            }
+
+            img {
+                height: pxToRem(20);
+            }
+        }
+
+        &FullScreenAudio {
+            @include media-breakpoint-below(md) {
+                display: none;
+            }
+        }
+
+        &Tooltip {
+            @include media-breakpoint-below(md) {
+                display: none;
+            }
+        }
+
+        &IconMobile {
+            display: none;
+
+            @include media-breakpoint-below(md) {
+                display: block;
+            }
+        }
+    }
+
+    .mediaDuration {
+        margin-right: pxToRem(20);
+        font-size: pxToRem(14);
+        line-height: pxToRem(22);
+        color: var(--color-black-2);
+
+        @include media-breakpoint-below(sm) {
+            margin-right: pxToRem(12);
+        }
+    }
+
+    .mediaSoundWave {
+        height: pxToRem(20);
+        margin-bottom: pxToRem(40);
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        @include media-breakpoint-below(lg) {
+            margin-bottom: pxToRem(56);
+        }
+
+        @include media-breakpoint-below(sm) {
+            margin-left: calc(#{$container-mobile-horizontal-padding} * -1);
+            margin-right: calc(#{$container-mobile-horizontal-padding} * -1);
+        }
+    }
+
+    .mediaSoundWavePlayed {
+        .soundWaveActive:first-child {
+            background-color: var(--color-black);
+        }
+    }
+
+    .soundWave {
+        height: pxToRem(20);
+        width: 2px;
+        background-color: var(--color-black);
+        transition: all 0.8s ease-in;
+
+        &:not(:last-child) {
+            margin-right: 2px;
+        }
+
+        &SeekGhost {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            margin: 0;
+            height: pxToRem(20);
+        }
+    }
+
+    .soundWaveActive {
+        background-color: var(--color-black);
+        transition: all 0.8s ease-in;
+
+        &:first-child {
+            background-color: var(--sound-wave-bar-color);
+        }
+
+        &~.soundWave {
+            background-color: var(--sound-wave-bar-color);
+        }
+    }
+
+    .nftCountdown {
+        display: flex;
+        align-items: center;
+
+        @include media-breakpoint-below(lg) {
+            margin-bottom: pxToRem(24);
+        }
+
+        &Item {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            &:not(:last-child) {
+                margin-right: pxToRem(30);
+            }
+        }
+
+        &No {
+            font-size: pxToRem(32);
+            line-height: pxToRem(42);
+            font-family: $font-gilroy-bold;
+            color: var(--color-black);
+        }
+
+        &Label {
+            font-size: pxToRem(16);
+            line-height: pxToRem(19);
+            font-family: $font-gilroy-regular;
+            color: var(--color-black-2);
+        }
+    }
+
+    .nftActions {
+        @include media-breakpoint-below(md) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @include media-breakpoint-below(sm) {
+            width: 100%;
+        }
+
+        &Row {
+            @include media-breakpoint-below(lg) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        >*+* {
+            margin-left: pxToRem(20);
+
+            @include media-breakpoint-below(md) {
+                margin-left: 0;
+            }
+        }
+
+        &Btn {
+            @include media-breakpoint-below(md) {
+                margin-top: pxToRem(24);
+            }
+
+            @include media-breakpoint-below(sm) {
+                width: 100%;
+            }
+        }
+    }
+
+    .nftPriceLabel {
+        font-size: pxToRem(16);
+        line-height: pxToRem(19);
+        font-family: $font-gilroy-regular;
+        color: var(--color-grey-2);
+        margin-bottom: pxToRem(7);
+
+        @include media-breakpoint-below(md) {
+            margin-bottom: 0;
+            margin-right: pxToRem(18);
+        }
+    }
+
+    .nftPriceRow {
+        @include media-breakpoint-below(md) {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        img {
+            height: pxToRem(20);
+            margin-right: pxToRem(12);
+        }
+    }
+
+    .nftPriceNo {
+        font-size: pxToRem(30);
+        line-height: pxToRem(34);
+        font-family: $font-gilroy-bold;
+    }
+}
+
+.nftOwnModal {
+    :global {
+        .ant-modal-body {
+            padding: pxToRem(60) 0;
+            position: relative;
+        }
+
+        .div-content {
+            max-height: pxToRem(316);
+            overflow-y: auto;
+            padding: 0 pxToRem(10) 0 pxToRem(60);
+            margin-right: pxToRem(50);
+        }
+    }
+
+    &Title {
+        text-align: center;
+        font-size: pxToRem(24);
+        line-height: pxToRem(29);
+        font-family: $font-gilroy-bold;
+        margin-bottom: pxToRem(40);
+    }
+
+    &List {
+        border: 1px solid var(--color-gray-4);
+        border-radius: 8px;
+    }
+
+    &Item {
+        padding: pxToRem(20);
+        border-bottom: 1px solid var(--color-gray-4);
+
+        &:last-child {
+            border: none;
+        }
+    }
+
+    &Address {
+        color: var(--color-red);
+        text-decoration: underline;
+        text-underline-offset: pxToRem(4);
+    }
+
+    &Number {
+        color: var(--color-grey-2);
+        font-size: pxToRem(16);
+        line-height: pxToRem(19);
+        font-family: $font-gilroy-medium;
+    }
+}
+
+.nftCountdownDrops {
+    h5 {
+        font-size: pxToRem(18);
+        line-height: pxToRem(28);
+        font-family: $font-gilroy-regular;
+        color: var(--color-black-3);
+        margin-bottom: pxToRem(6);
+    }
+
+    p {
+        font-size: pxToRem(32);
+        line-height: pxToRem(42);
+        font-family: $font-gilroy-bold;
+        color: var(--color-black);
+    }
+}
+
+.nftCountdown {
+    display: flex;
+    align-items: center;
+
+    @include media-breakpoint-below(lg) {
+        margin-bottom: pxToRem(24);
+    }
+
+    :global {
+        .only_number {
+            &:not(:last-child) {
+                &>span:after {
+                    display: inline-block;
+                }
+            }
+
+            &>span:nth-child(2) {
+                display: none;
+            }
+        }
+    }
+
+    &Item {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        &:not(:last-child) {
+            margin-right: pxToRem(5);
+        }
+    }
+
+    &No {
+        font-size: pxToRem(20);
+        line-height: pxToRem(30);
+        font-family: $font-gilroy-bold;
+        color: var(--color-black);
+
+        &:after {
+            content: ':';
+            display: none;
+            margin-left: pxToRem(5);
+        }
+    }
+
+    &Label {
+        font-size: pxToRem(16);
+        line-height: pxToRem(19);
+        font-family: $font-gilroy-regular;
+        color: var(--color-black-2);
+    }
+}
+
+.endedAuction {
+    font-size: pxToRem(18);
+    line-height: pxToRem(24);
+    margin: 0;
+    font-family: $font-gilroy-bold;
+    color: var(--color-black);
+}
