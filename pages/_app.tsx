@@ -22,7 +22,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
           {(auth) =>
             !auth.isInitialized ? (
               <>
-                <div>ssss</div>
+                <div>Loading...</div>
               </>
             ) : (
               getLayout(<Component {...pageProps} />)

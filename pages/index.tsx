@@ -47,7 +47,7 @@ const Home: Page = () => {
           <Paper
             elevation={8}
             sx={{
-              height: '26vh',
+              height: '29vh',
               padding: '8px',
               border: 'solid 2px',
               borderRadius: '24px',
