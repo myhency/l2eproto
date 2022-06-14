@@ -3,7 +3,9 @@
 import { Col, Row, Slider, Tooltip } from 'antd';
 import classNames from 'classnames';
 import { memo, useEffect, useMemo, useRef, useState } from 'react';
+import NextLink from 'next/link';
 import style from './style.module.scss';
+import { useRouter } from 'next/router';
 
 interface Props {
   className?: string;
@@ -26,6 +28,9 @@ const waveHeights = [
 ];
 
 const NftControl = (props: Props) => {
+  const router = useRouter();
+  const id = router.asPath.split('/')[2];
+
   const {
     className,
     isPlaying = false,
@@ -144,6 +149,16 @@ const NftControl = (props: Props) => {
                 <div className={style.mediaControlIconMobile}>
                   <img src="/images/nft-detail/icon-next-10.svg" alt="icon" />
                 </div>
+              </Col>
+              <Col className={style.mediaControlIcon} onClick={onSeekBack10}>
+                {/* <Tooltip title="Seek back 10 seconds" className={style.mediaControlTooltip}>
+                  <img src="/images/nft-detail/icon-next-10.svg" alt="icon" />
+                </Tooltip> */}
+                <NextLink href={`/playlist/${id}`} passHref>
+                  <div className={style.mediaControlIconMobile}>
+                    <img src="/images/nft-detail/song-list.svg" alt="icon" />
+                  </div>
+                </NextLink>
               </Col>
             </Row>
             <Row align="middle">

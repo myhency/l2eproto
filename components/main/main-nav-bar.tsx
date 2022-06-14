@@ -12,7 +12,9 @@ interface MainNavBarProps {
 }
 
 function ScrollTop() {
-  const trigger = useScrollTrigger({ threshold: 10 });
+  const trigger = useScrollTrigger({ threshold: 100 });
+
+  console.log(trigger);
 
   return (
     <Fade in={!trigger}>

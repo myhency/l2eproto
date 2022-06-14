@@ -238,10 +238,10 @@
             }
 
             @include media-breakpoint-below(376px) {
-                width: 71%;
-                height: 71%;
-                top: 44%;
-                left: 44%
+                width: pxToRem(240);
+                height: pxToRem(240);
+                top: pxToRem(150);
+                left: pxToRem(150);
             }
 
             @include media-breakpoint-below(333px) {

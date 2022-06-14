@@ -8,6 +8,7 @@ import { MainLayout } from '@layouts/main-layout';
 import { Container } from '@mui/system';
 import { Play as PlayIcon } from '@icons/play';
 import NextLink from 'next/link';
+import { PlayerLayout } from '@layouts/player-layout';
 
 const playlist = [
   { thumbnail: '/images/playlist-card-rainy-day.png', name: 'Rainy Day', id: '1' },
@@ -31,8 +32,8 @@ const Playlist: Page = () => {
         <title>playlist</title>
       </Head>
 
-      <Box component="main" sx={{ '&::-webkit-scrollbar': { display: 'none' } }}>
-        <Container sx={{ '&::-webkit-scrollbar': { display: 'none' } }}>
+      <Box component="main">
+        <Container sx={{ WebkitOverflowScrolling: 'touch' }}>
           <Stack direction="column">
             <Box
               sx={{
@@ -97,7 +98,7 @@ const Playlist: Page = () => {
                       >
                         {v.name}
                       </span>
-                      <NextLink href={`/player/${v.id}`} passHref>
+                      <NextLink href={`/playlist/${v.id}`} passHref>
                         <IconButton
                           style={{
                             display: 'flex',
@@ -125,7 +126,7 @@ const Playlist: Page = () => {
 
 Playlist.getLayout = (page: React.ReactElement) => (
   <AuthGuard>
-    <MainLayout>{page}</MainLayout>
+    <PlayerLayout>{page}</PlayerLayout>
   </AuthGuard>
 );
 

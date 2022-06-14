@@ -38,13 +38,13 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
             pullDownContent={<PullDownContent />}
             releaseContent={<ReleaseContent />}
             refreshContent={<RefreshContent />}
-            pullDownThreshold={200}
+            pullDownThreshold={1}
             onRefresh={() =>
               new Promise((resolve) => {
                 setTimeout(resolve, 1000);
               })
             }
-            triggerHeight={1000}
+            triggerHeight={'auto'}
             backgroundColor="white"
           >
             {children}

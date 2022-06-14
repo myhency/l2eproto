@@ -236,6 +236,9 @@ const Player: Page = () => {
               </div>
             </div>
           </section>
+          <Stack justifyContent="center" alignItems="center">
+            <Button>earn</Button>
+          </Stack>
         </Container>
       </Box>
     </>
