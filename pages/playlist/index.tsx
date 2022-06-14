@@ -32,9 +32,9 @@ const Playlist: Page = () => {
         <title>playlist</title>
       </Head>
 
-      <Box component="main">
+      <Box component="main" sx={{ backgroundColor: 'black' }}>
         <Container sx={{ WebkitOverflowScrolling: 'touch' }}>
-          <Stack direction="column">
+          <Stack direction="column" sx={{ backgroundColor: 'black' }}>
             <Box
               sx={{
                 display: 'flex',
@@ -47,6 +47,7 @@ const Playlist: Page = () => {
                 style={{
                   fontSize: '28px',
                   fontWeight: '900',
+                  color: 'white',
                 }}
               >
                 Play your mood

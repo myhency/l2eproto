@@ -1,10 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 import NextLink from 'next/link';
-import { AppBar, Box, Button, Fade, Toolbar, useScrollTrigger } from '@mui/material';
+import { AppBar, Box, Button, Fade, Stack, Toolbar, useScrollTrigger } from '@mui/material';
 import { Container } from '@mui/system';
 import { ShoppingCart as ShoppingCartIcon } from '@icons/shopping-cart';
 import { AcademicCap as AcademicCapIcon } from '@icons/academic-cap';
 import { Archive as ArchiveIcon } from '@icons/archive';
 import { VolumeUp as VolumeUpIcon } from '@icons/volume-up';
+import { Headphone as HeadphoneIcon } from '@icons/headphone';
+import { Prize as PrizeIcon } from '@icons/prize';
+import { Playlist as PlaylistIcon } from '@icons/playlist';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 interface MainNavBarProps {
   onOpenMyProfile: () => void;
@@ -12,52 +18,112 @@ interface MainNavBarProps {
 }
 
 function ScrollTop() {
-  const trigger = useScrollTrigger({ threshold: 100 });
+  const router = useRouter();
+  const [currentActive, setCurrentActive] = useState(router.pathname);
+  const trigger = useScrollTrigger({ threshold: 0 });
 
-  console.log(trigger);
+  useEffect(() => {
+    setCurrentActive(router.pathname);
+  }, [router]);
+
+  console.log(currentActive);
+  console.log(currentActive === '/');
+
+  const colorByActiveState = `${currentActive === '/inventory' ? 'white' : '#ffffff3b'}`;
 
   return (
     <Fade in={!trigger}>
       <Box
         sx={{
           position: 'fixed',
-          bottom: 30,
+          bottom: 0,
           right: 0,
           left: 0,
           zIndex: 10,
-          padding: '4px 16px 4px 16px',
-          marginRight: '1rem',
-          marginLeft: '1rem',
+          // padding: '4px 16px 4px 16px',
+          // marginRight: '1rem',
+          // marginLeft: '1rem',
+          backgroundColor: '#222222',
         }}
       >
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            backgroundColor: 'lightgray',
-            borderRadius: '18px',
-            minHeight: '6vh',
+            alignItems: 'center',
+            // backgroundColor: 'lightgray',
+            // borderRadius: '18px',
+            minHeight: '9vh',
+            minWidth: '100vw',
+            paddingLeft: '1rem',
+            paddingRight: '1rem',
           }}
         >
           <NextLink href="/" passHref>
-            <Button>
-              <VolumeUpIcon />
-            </Button>
+            <Stack direction="column" justifyContent="center" alignItems="center">
+              <Button>
+                <HeadphoneIcon
+                  style={{
+                    color: `${currentActive === '/' ? 'white' : '#ffffff3b'}`,
+                    minWidth: '34px',
+                    minHeight: '34px',
+                  }}
+                />
+              </Button>
+              <span style={{ color: `${currentActive === '/' ? 'white' : '#ffffff3b'}`, fontSize: '12px' }}>
+                Headphone
+              </span>
+            </Stack>
           </NextLink>
           <NextLink href="/inventory" passHref>
-            <Button>
-              <ArchiveIcon />
-            </Button>
+            <Stack direction="column" justifyContent="center" alignItems="center">
+              <Button>
+                <ArchiveIcon
+                  style={{
+                    color: `${currentActive === '/inventory' ? 'white' : '#ffffff3b'}`,
+                    minWidth: '34px',
+                    minHeight: '34px',
+                  }}
+                />
+              </Button>
+              <span style={{ color: `${currentActive === '/inventory' ? 'white' : '#ffffff3b'}`, fontSize: '12px' }}>
+                Inventory
+              </span>
+            </Stack>
           </NextLink>
-          <NextLink href="/" passHref>
-            <Button>
-              <AcademicCapIcon />
-            </Button>
+          <NextLink href="/playlist" passHref>
+            <Stack direction="column" justifyContent="center" alignItems="center">
+              <Button>
+                <PlaylistIcon
+                  style={{
+                    color: `${currentActive.includes('/playlist') ? 'white' : '#ffffff3b'}`,
+                    minWidth: '34px',
+                    minHeight: '34px',
+                  }}
+                />
+              </Button>
+              <span
+                style={{ color: `${currentActive.includes('/playlist') ? 'white' : '#ffffff3b'}`, fontSize: '12px' }}
+              >
+                Playlist
+              </span>
+            </Stack>
           </NextLink>
           <NextLink href="/marketplace" passHref>
-            <Button>
-              <ShoppingCartIcon />
-            </Button>
+            <Stack direction="column" justifyContent="center" alignItems="center">
+              <Button>
+                <ShoppingCartIcon
+                  style={{
+                    color: `${currentActive === '/marketplace' ? 'white' : '#ffffff3b'}`,
+                    minWidth: '34px',
+                    minHeight: '34px',
+                  }}
+                />
+              </Button>
+              <span style={{ color: `${currentActive === '/marketplace' ? 'white' : '#ffffff3b'}`, fontSize: '12px' }}>
+                Marketplace
+              </span>
+            </Stack>
           </NextLink>
         </Box>
       </Box>
@@ -68,14 +134,21 @@ function ScrollTop() {
 export const MainNavBar = ({ onOpenMyProfile, onOpenMyWallet }: MainNavBarProps) => {
   return (
     <>
-      <AppBar elevation={0} position="fixed" sx={{ userDrag: 'none' }}>
+      <AppBar elevation={0} position="fixed" sx={{ userDrag: 'none', backgroundColor: 'black' }}>
         <Container>
           <Toolbar disableGutters sx={{ minHeight: 64 }}>
             <Box sx={{ display: 'flex' }}>
-              <div onClick={onOpenMyProfile}>MyProfile</div>
+              <img src="/images/Frame.svg" alt="icon" />
             </Box>
             <Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'end' }}>
-              <div onClick={onOpenMyWallet}>Wallet</div>
+              <img
+                src="/images/menu.svg"
+                alt="icon"
+                width="24px"
+                style={{
+                  filter: 'invert(99%) sepia(9%) saturate(18%) hue-rotate(358deg) brightness(110%) contrast(100%)',
+                }}
+              />
             </Box>
           </Toolbar>
         </Container>

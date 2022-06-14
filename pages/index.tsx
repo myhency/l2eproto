@@ -10,8 +10,9 @@ import { MusicNote as MusicNoteIcon } from '@icons/music-note';
 import { QuestionMarkCircle as QuestionMarkCircleIcon } from '@icons/question-mark-circle';
 import { LightningBolt as LightningBoltIcon } from '@icons/lightning-bolt';
 import { Inbox as InboxIcon } from '@icons/inbox';
+import { Energy as EnergyIcon } from '@icons/energy';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -19,7 +20,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 // import required modules
-import { Navigation } from 'swiper';
+import { Navigation, Pagination } from 'swiper';
 
 const earningCap = {
   dailyMax: 50,
@@ -30,6 +31,12 @@ const energyCap = {
   max: 4,
   currentEnergy: 1,
 };
+
+const headphones = [
+  { id: '#16452324', image: '/images/headphone_gold.png', level: 5, energy: '100%', type: 'rare' },
+  { id: '#24568454235', image: '/images/headphone_none.png', level: 1, energy: '100%', type: 'common' },
+  { id: '#3347545', image: '/images/headphone_basic.png', level: 20, energy: '100%', type: 'uncommon' },
+];
 
 const Home: Page = () => {
   const [val, setVal] = useState(true);
@@ -43,373 +50,148 @@ const Home: Page = () => {
       </Head>
 
       <Box component="main">
-        <Container sx={{ height: '88vh', paddingTop: '20px' }}>
-          <Paper
-            elevation={8}
-            sx={{
-              height: '29vh',
-              padding: '8px',
-              border: 'solid 2px',
-              borderRadius: '24px',
-            }}
-          >
-            <Swiper slidesPerView={1} spaceBetween={30} loop={true} navigation={true} modules={[Navigation]}>
-              <SwiperSlide>
-                <Stack spacing={1} direction="column">
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      fontSize: '12px',
-                      padding: '2px 4px 2px 4px',
-                      minWidth: '64px',
-                    }}
-                  >
-                    <span>headphone</span>
-                  </div>
-                  <Box>
-                    <img
-                      src="/images/headphone_gold.png"
-                      alt=""
-                      style={{ objectFit: 'scale-down', maxHeight: '130px' }}
-                    />
-                  </Box>
-                  <Stack spacing={2} direction="row">
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        border: 'solid 1px',
-                        borderRadius: '24px',
-                        fontSize: '8px',
-                        padding: '2px 4px 2px 4px',
-                        minWidth: '30px',
-                      }}
-                    >
-                      <span>#12345123098</span>
-                    </div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        border: 'solid 1px',
-                        borderRadius: '24px',
-                        fontSize: '8px',
-                        padding: '2px 4px 2px 4px',
-                        minWidth: '64px',
-                      }}
-                    >
-                      <span>100.0 / 100.0</span>
-                    </div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        border: 'solid 1px',
-                        borderRadius: '24px',
-                        fontSize: '8px',
-                        padding: '2px 4px 2px 4px',
-                        minWidth: '64px',
-                      }}
-                    >
-                      <span>Lv 10</span>
-                    </div>
+        <Container sx={{ height: '88vh', paddingTop: '0.5rem', backgroundColor: 'black' }}>
+          <Box>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={8}
+              loop={true}
+              navigation={true}
+              flipEffect={{
+                limitRotation: true,
+              }}
+              modules={[Navigation, Pagination]}
+            >
+              {headphones.map((v, i) => (
+                <SwiperSlide style={{ backgroundColor: 'rgba(255,255,255,0)' }} key={i}>
+                  <Stack direction="column">
+                    <Box sx={{ mb: 3 }}>
+                      <img src={v.image} alt="" style={{ objectFit: 'scale-down', maxHeight: '17vh' }} />
+                    </Box>
+                    <Stack direction={'column'} alignItems="center" justifyContent={'center'} spacing={1}>
+                      <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={3}>
+                        <span style={{ color: 'white', fontSize: '0.9rem' }}>{`Lv. ${v.level}`}</span>
+                        <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+                          <div
+                            style={{
+                              backgroundColor: 'white',
+                              borderRadius: '1.5rem',
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              padding: '0.3rem',
+                            }}
+                          >
+                            <EnergyIcon style={{ color: 'black', width: '0.6rem', height: '0.6rem' }} />
+                          </div>
+                          <span style={{ color: 'white', fontSize: '0.9rem' }}>{v.energy}</span>
+                        </Stack>
+                      </Stack>
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          borderRadius: '1.5rem',
+                          border: 'solid 1px',
+                          borderColor: 'rgba(255,255,255,0.6)',
+                          paddingLeft: '0.5rem',
+                          paddingRight: '0.5rem',
+                        }}
+                      >
+                        <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.7rem' }}>{v.id}</span>
+                      </div>
+                      <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.9rem' }}>{v.type}</span>
+                    </Stack>
                   </Stack>
-                </Stack>
-              </SwiperSlide>
-              <SwiperSlide>
-                <Stack spacing={1} direction="column">
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      fontSize: '12px',
-                      padding: '2px 4px 2px 4px',
-                      minWidth: '64px',
-                    }}
-                  >
-                    <span>headphone</span>
-                  </div>
-                  <Box>
-                    <img
-                      src="/images/headphone_basic.png"
-                      alt=""
-                      style={{ objectFit: 'scale-down', maxHeight: '130px' }}
-                    />
-                  </Box>
-                  <Stack spacing={2} direction="row">
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        border: 'solid 1px',
-                        borderRadius: '24px',
-                        fontSize: '8px',
-                        padding: '2px 4px 2px 4px',
-                        minWidth: '30px',
-                      }}
-                    >
-                      <span>#12345123098</span>
-                    </div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        border: 'solid 1px',
-                        borderRadius: '24px',
-                        fontSize: '8px',
-                        padding: '2px 4px 2px 4px',
-                        minWidth: '64px',
-                      }}
-                    >
-                      <span>100.0 / 100.0</span>
-                    </div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        border: 'solid 1px',
-                        borderRadius: '24px',
-                        fontSize: '8px',
-                        padding: '2px 4px 2px 4px',
-                        minWidth: '64px',
-                      }}
-                    >
-                      <span>Lv 10</span>
-                    </div>
-                  </Stack>
-                </Stack>
-              </SwiperSlide>
+                </SwiperSlide>
+              ))}
             </Swiper>
-          </Paper>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', py: 1, mt: 3 }}>
-            <Box
-              sx={{
-                minHeight: '4rem',
-                aspectRatio: '1 / 1',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'lightgrey',
-                borderRadius: '6px',
-              }}
-            >
-              <span
-                style={{
-                  fontSize: '12px',
-                  textAlign: 'center',
-                  color: 'white',
-                }}
-              >
-                Loot Box
-              </span>
-            </Box>
-            <Box
-              sx={{
-                minHeight: '4rem',
-                aspectRatio: '1 / 1',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'lightgrey',
-                borderRadius: '6px',
-              }}
-            >
-              <span
-                style={{
-                  fontSize: '12px',
-                  textAlign: 'center',
-                  color: 'white',
-                }}
-              >
-                Loot Box
-              </span>
-            </Box>
-            <Box
-              sx={{
-                minHeight: '4rem',
-                aspectRatio: '1 / 1',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'lightgrey',
-                borderRadius: '6px',
-              }}
-            >
-              <span
-                style={{
-                  fontSize: '12px',
-                  textAlign: 'center',
-                  color: 'white',
-                }}
-              >
-                Loot Box
-              </span>
-            </Box>
-            <Box
-              sx={{
-                minHeight: '4rem',
-                aspectRatio: '1 / 1',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'lightgrey',
-                borderRadius: '6px',
-              }}
-            >
-              <span
-                style={{
-                  fontSize: '12px',
-                  textAlign: 'center',
-                  color: 'white',
-                }}
-              >
-                Loot Box
-              </span>
-            </Box>
           </Box>
-          <Stack spacing={2} sx={{ display: 'flex', flexDirection: 'column', mt: 3 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div
-                style={{
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+            {[1, 2, 3, 4].map((v) => (
+              <Box
+                key={v}
+                sx={{
+                  minHeight: '4rem',
+                  aspectRatio: '1 / 1',
                   display: 'flex',
-                  width: '20%',
-                  maxHeight: '18px',
-                  margin: '0.3rem',
-                }}
-              ></div>
-              <div
-                style={{
-                  display: 'flex',
-                  width: '60%',
-                  minHeight: '18px',
-                  backgroundColor: 'lightgray',
-                  margin: '0.3rem',
-                  borderRadius: '18px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'lightgrey',
+                  borderRadius: '6px',
                 }}
               >
-                <div
+                <span
                   style={{
-                    padding: '2px 8px 2px 8px',
-                    maxHeight: '18px',
-                    backgroundColor: 'red',
-                    borderRadius: '18px',
-                    position: 'relative',
-                    width: `${(earningCap.currentEarn / earningCap.dailyMax) * 100}%`,
-                  }}
-                />
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    position: 'absolute',
-                    marginTop: '2px',
-                    marginLeft: '8px',
+                    fontSize: '12px',
+                    textAlign: 'center',
+                    color: 'black',
                   }}
                 >
-                  <MusicNoteIcon style={{ width: '12px', height: '12px' }} />
-                  <span style={{ marginLeft: '4px', fontSize: '12px' }}>22.93 / 50</span>
-                </div>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  width: '20%',
-                  maxHeight: '18px',
-                  margin: '0.3rem',
-                  justifyContent: 'end',
-                }}
-              >
-                <IconButton>
-                  <QuestionMarkCircleIcon style={{ color: 'black' }} />
-                </IconButton>
-              </div>
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  width: '20%',
-                  maxHeight: '18px',
-                  margin: '0.3rem',
-                }}
-              ></div>
-              <div
-                style={{
-                  display: 'flex',
-                  width: '60%',
-                  minHeight: '18px',
-                  backgroundColor: 'lightgray',
-                  margin: '0.3rem',
-                  borderRadius: '18px',
-                }}
-              >
+                  Loot Box
+                </span>
+              </Box>
+            ))}
+          </Box>
+          <Stack spacing={1} sx={{ display: 'flex', flexDirection: 'column', mt: 3 }}>
+            <Stack direction={'row'} justifyContent="space-between">
+              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+                <img src="/images/lbl-symbol.png" alt="" style={{ width: '1.2rem', height: '1.2rem' }} />
+                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.8rem' }}>0.00</span>
+              </Stack>
+              <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>100.00 LBL</span>
+            </Stack>
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                minHeight: '1rem',
+                backgroundColor: 'rgba(255,255,255,0.2)',
+                borderRadius: '18px',
+              }}
+            />
+            <Stack direction={'row'} justifyContent="space-between">
+              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
                 <div
                   style={{
-                    padding: '2px 8px 2px 8px',
-                    maxHeight: '18px',
-                    backgroundColor: 'skyblue',
-                    borderRadius: '18px',
-                    position: 'relative',
-                    width: `${(energyCap.currentEnergy / energyCap.max) * 100}%`,
-                  }}
-                />
-                <div
-                  style={{
+                    backgroundColor: 'rgba(255,255,255,0.2)',
+                    borderRadius: '1.5rem',
                     display: 'flex',
+                    justifyContent: 'center',
                     alignItems: 'center',
-                    position: 'absolute',
-                    marginTop: '2px',
-                    marginLeft: '8px',
+                    padding: '0.1rem',
                   }}
                 >
-                  <div
-                    style={{
-                      display: 'flex',
-                    }}
-                  >
-                    <LightningBoltIcon style={{ width: '12px', height: '12px' }} />
-                    <span style={{ marginLeft: '4px', fontSize: '12px' }}>1.0 / 4.0</span>
-                  </div>
-                  <div style={{ display: 'flex', marginLeft: '28px' }}>
-                    <span style={{ fontSize: '6px' }}>Refill in </span>
-                    <span style={{ fontSize: '6px', color: 'blue' }}>4h 25min </span>
-                  </div>
+                  <EnergyIcon style={{ color: 'white', width: '0.9rem', height: '0.9rem' }} />
                 </div>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  width: '20%',
-                  maxHeight: '18px',
-                  margin: '0.3rem',
-                  justifyContent: 'end',
-                }}
-              >
-                <IconButton>
-                  <InboxIcon style={{ color: 'black' }} />
-                </IconButton>
-              </div>
-            </Box>
+                <span style={{ color: 'white', fontSize: '0.9rem' }}>100%</span>
+              </Stack>
+              <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>6h left</span>
+            </Stack>
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                minHeight: '1rem',
+                backgroundColor: 'rgba(255,255,255,0.6)',
+                borderRadius: '18px',
+              }}
+            />
           </Stack>
-          <Stack spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
+          <Stack spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <NextLink href="/playlist" passHref>
-                <Button variant="contained" sx={{ px: 3 }}>
-                  GO TO PLAYLIST
+                <Button
+                  variant="contained"
+                  sx={{ px: 3, backgroundColor: 'white', color: 'black', width: '100%', minHeight: '4rem' }}
+                >
+                  <span style={{ fontSize: 'large', fontWeight: 'bolder' }}>Go To Playlist</span>
                 </Button>
               </NextLink>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <span style={{ fontSize: '12px', textDecoration: 'underline' }}>How to earn?</span>
+              <span style={{ fontSize: '0.8rem', textDecoration: 'underline', color: 'white' }}>How to earn?</span>
             </Box>
           </Stack>
         </Container>
