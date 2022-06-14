@@ -69,6 +69,7 @@
     --color-white: #ffffff;
     --color-white-rgb: 255, 255, 255;
     --color-white-light: rgba(255, 255, 255, 0.8);
+    --color-white-dark: rgba(255, 255, 255, 0.5);
     --color-footer: rgb(3, 5, 24);
     --color-content: rgba(255, 255, 255, 0.6);
     --color-white1: rgba(255, 255, 255, 0.7);
@@ -129,7 +130,7 @@
     --progress-active-background-color: #7f7f7f;
     --progress-active-border-color: #eaebed;
     --bgr-white-btn: #f5f6fa;
-    --sound-wave-bar-color: #b2b2b2;
+    --sound-wave-bar-color: #b2b2b25a;
 }
 
 html,

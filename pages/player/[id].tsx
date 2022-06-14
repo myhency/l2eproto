@@ -131,8 +131,8 @@ const Player: Page = () => {
       </Head>
 
       <Box component="main">
-        <Container sx={{ paddingTop: '20px' }}>
-          <Stack direction="row" justifyContent="space-between">
+        <Container sx={{ paddingTop: '1rem', paddingLeft: '0px', paddingRight: '0px' }}>
+          <Stack direction="row" justifyContent="space-between" sx={{ px: 2 }}>
             <Box>
               <Button variant="outlined" size="small">
                 View Musician PFP
@@ -176,8 +176,8 @@ const Player: Page = () => {
                       >
                         <stop offset={0} stopColor="#939393" stopOpacity={0.5} />
                         <stop offset={0.2} stopColor="#939393" stopOpacity={0.8} />
-                        <stop offset={0.5} stopColor="#000000" stopOpacity={0.5} />
-                        <stop offset={1} stopColor="#000000" />
+                        <stop offset={0.5} stopColor="rgba(255,255,255,0.2)" stopOpacity={0.5} />
+                        <stop offset={1} stopColor="#rgba(255,255,255,0.2)" />
                       </linearGradient>
                     </defs>
                   </svg>

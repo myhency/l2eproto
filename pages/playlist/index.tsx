@@ -45,6 +45,7 @@ const Playlist: Page = () => {
             >
               <span
                 style={{
+                  fontFamily: 'ZenDots',
                   fontSize: '28px',
                   fontWeight: '900',
                   color: 'white',

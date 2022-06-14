@@ -36,16 +36,18 @@
 }
 
 .swiper-button-next {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpolygon fill='rgba(255,255,255, 0.5)' points='20.62 55.62 45.74 30.5 20.62 5.38 16.38 9.62 37.26 30.5 16.38 51.38 20.62 55.62'/%3E%3C/svg%3E") no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpolygon fill='rgba(255,255,255, 1)' points='20.62 55.62 45.74 30.5 20.62 5.38 16.38 9.62 37.26 30.5 16.38 51.38 20.62 55.62'/%3E%3C/svg%3E") no-repeat;
   background-size: 70% auto;
   background-position: center;
+  top: 30% !important;
 }
 
 .swiper-button-prev {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpolygon fill='rgba(255,255,255, 0.5)' points='20.62 55.62 45.74 30.5 20.62 5.38 16.38 9.62 37.26 30.5 16.38 51.38 20.62 55.62'/%3E%3C/svg%3E") no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpolygon fill='rgba(255,255,255, 1)' points='20.62 55.62 45.74 30.5 20.62 5.38 16.38 9.62 37.26 30.5 16.38 51.38 20.62 55.62'/%3E%3C/svg%3E") no-repeat;
   background-size: 70% auto;
   background-position: center;
   transform: rotate(180deg);
+  top: 30% !important;
 }
 
 .swiper-button-next::after,

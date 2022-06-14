@@ -80,50 +80,22 @@ const NftControl = (props: Props) => {
 
   return (
     <>
-      {/* <Stack direction="row" justifyContent="space-between">
-        <Stack spacing={3} direction="row" className={style.mediaControl}>
-          <Box className={style.mediaControlIcon}>
-            <div className={style.mediaControlIconMobile} onClick={handlePlay}>
-              <img src={`/images/nft-detail/icon-play.svg`} alt="icon" />
-            </div>
-          </Box>
-          <div className={style.mediaControlIconMobile} onClick={handlePause}>
-            <img src="/images/nft-detail/icon-pause.svg" alt="icon" />
-          </div>
-          <div className={style.mediaControlIconMobile} onClick={onSeekNext10}>
-            <img src="/images/nft-detail/icon-prev-10.svg" alt="icon" />
-          </div>
-          <div className={style.mediaControlIconMobile} onClick={onSeekBack10}>
-            <img src="/images/nft-detail/icon-next-10.svg" alt="icon" />
-          </div>
-        </Stack>
-        <Stack>
-          <span className={style.mediaDuration}>{`${formattedPlayed} / ${formattedDuration}`}</span>
-        </Stack>
-      </Stack>
-      <div
-        className={classNames(style.mediaSoundWave, formattedPlayed !== '00:00' && style.mediaSoundWavePlayed)}
-        ref={soundWaveRef}
-      >
-        {waveBars.length > 0 &&
-          waveBars.map((_, i) => (
-            <span
-              className={classNames(style.soundWave, i === activeIndexTimeline && style.soundWaveActive)}
-              key={`wave-${i}`}
-              style={{ height: waveHeights[i % waveHeights.length] }}
-            />
-          ))}
-      </div> */}
       <div className={classNames(className && className)}>
         <div className={style.mediaControl}>
-          <Row justify="space-between">
+          <Row justify="space-between" style={{ paddingRight: '1rem', paddingLeft: '1rem' }}>
             <Row align="middle">
               <Col className={style.mediaControlIcon} onClick={handlePlay}>
                 {/* <Tooltip title="Play" className={style.mediaControlTooltip}>
                   <img src={`/images/nft-detail/icon-play.svg`} alt="icon" />
                 </Tooltip> */}
                 <div className={style.mediaControlIconMobile}>
-                  <img src={`/images/nft-detail/icon-play.svg`} alt="icon" />
+                  <img
+                    src={`/images/nft-detail/icon-play.svg`}
+                    alt="icon"
+                    style={{
+                      filter: 'invert(99%) sepia(9%) saturate(18%) hue-rotate(358deg) brightness(110%) contrast(100%)',
+                    }}
+                  />
                 </div>
               </Col>
               <Col className={style.mediaControlIcon} onClick={handlePause}>
@@ -131,7 +103,13 @@ const NftControl = (props: Props) => {
                   <img src="/images/nft-detail/icon-pause.svg" alt="icon" />
                 </Tooltip> */}
                 <div className={style.mediaControlIconMobile}>
-                  <img src="/images/nft-detail/icon-pause.svg" alt="icon" />
+                  <img
+                    src="/images/nft-detail/icon-pause.svg"
+                    alt="icon"
+                    style={{
+                      filter: 'invert(99%) sepia(9%) saturate(18%) hue-rotate(358deg) brightness(110%) contrast(100%)',
+                    }}
+                  />
                 </div>
               </Col>
               <Col className={style.mediaControlIcon} onClick={onSeekNext10}>
@@ -139,7 +117,13 @@ const NftControl = (props: Props) => {
                   <img src="/images/nft-detail/icon-prev-10.svg" alt="icon" />
                 </Tooltip> */}
                 <div className={style.mediaControlIconMobile}>
-                  <img src="/images/nft-detail/icon-prev-10.svg" alt="icon" />
+                  <img
+                    src="/images/nft-detail/icon-prev-10.svg"
+                    alt="icon"
+                    style={{
+                      filter: 'invert(99%) sepia(9%) saturate(18%) hue-rotate(358deg) brightness(110%) contrast(100%)',
+                    }}
+                  />
                 </div>
               </Col>
               <Col className={style.mediaControlIcon} onClick={onSeekBack10}>
@@ -147,7 +131,13 @@ const NftControl = (props: Props) => {
                   <img src="/images/nft-detail/icon-next-10.svg" alt="icon" />
                 </Tooltip> */}
                 <div className={style.mediaControlIconMobile}>
-                  <img src="/images/nft-detail/icon-next-10.svg" alt="icon" />
+                  <img
+                    src="/images/nft-detail/icon-next-10.svg"
+                    alt="icon"
+                    style={{
+                      filter: 'invert(99%) sepia(9%) saturate(18%) hue-rotate(358deg) brightness(110%) contrast(100%)',
+                    }}
+                  />
                 </div>
               </Col>
               <Col className={style.mediaControlIcon} onClick={onSeekBack10}>
@@ -156,7 +146,14 @@ const NftControl = (props: Props) => {
                 </Tooltip> */}
                 <NextLink href={`/playlist/${id}`} passHref>
                   <div className={style.mediaControlIconMobile}>
-                    <img src="/images/nft-detail/song-list.svg" alt="icon" />
+                    <img
+                      src="/images/nft-detail/song-list.svg"
+                      alt="icon"
+                      style={{
+                        filter:
+                          'invert(99%) sepia(9%) saturate(18%) hue-rotate(358deg) brightness(110%) contrast(100%)',
+                      }}
+                    />
                   </div>
                 </NextLink>
               </Col>
