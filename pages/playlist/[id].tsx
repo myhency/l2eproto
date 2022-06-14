@@ -48,7 +48,7 @@ const PlaylistDetail: Page = () => {
                 Earn start
               </Button>
             </NextLink>
-            <NextLink href="/player" passHref>
+            <NextLink href="/player/2" passHref>
               <Button
                 variant="outlined"
                 sx={{ px: 3, color: 'white', borderColor: 'white', width: '100%', minHeight: '2rem' }}

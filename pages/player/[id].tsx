@@ -15,12 +15,18 @@ import useWindowSize from '@hooks/use-window-size';
 import NftControl from '@components/player/control';
 import { formatDuration } from '@utils/string';
 import intervalToDuration from 'date-fns/intervalToDuration';
+import { EarningIndicator as EarningIndicatorIcon } from '@icons/earning-indicator';
+import { StopEarningIndicator as StopEarningIndicatorIcon } from '@icons/stop-earning-indicator';
+import { ChangeGear as ChangeGearIcon } from '@icons/change-gear';
+import SwipeableEdgeDrawer from '@components/player/swipable-drawer';
 
 const Player: Page = () => {
   const router = useRouter();
   const id = router.asPath.split('/')[2];
   const { width = 0 } = useWindowSize();
+  const [key, setKey] = useState<string>(Math.floor(Math.random() * 100000).toString());
   const [isPlaying, setPlaying] = useState<boolean>(false);
+  const [isReady, setReady] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
   const [progress, setProgress] = useState<{ playedSeconds: number; played: number }>({
     playedSeconds: 0,
@@ -33,12 +39,7 @@ const Player: Page = () => {
 
   const playerRef = useRef<ReactPlayer>(null);
 
-  useEffect(() => {
-    console.log(playerRef.current?.getDuration());
-  });
-
   const handleDuration = (value: number) => {
-    console.log(value);
     setDuration(value);
   };
 
@@ -47,21 +48,32 @@ const Player: Page = () => {
   };
 
   const handleTogglePlay = () => {
+    console.log('handleTogglePlay');
     setPlaying((prev) => !prev);
   };
 
   const handleEndMedia = () => {
-    console.log('handleEndMedia');
     setPlaying(false);
   };
 
   const handlePlay = () => {
-    console.log('play');
     setPlaying(true);
   };
   const handlePause = () => {
-    console.log('pause');
     setPlaying(false);
+  };
+
+  const handleReady = () => {
+    console.log('handleReady');
+    // setPlaying(true);
+  };
+
+  const handleStart = () => {
+    console.log('handleStart');
+  };
+
+  const handleBufferEnd = () => {
+    console.log('handleBufferEnd');
   };
 
   const handleSeekChangeTimeline = (value: number) => {
@@ -116,13 +128,23 @@ const Player: Page = () => {
     if (width < 321) {
       size = 210;
     }
-    console.log(width);
-    console.log(size);
     return size;
   }, [width]);
 
-  console.log('isPlaying:' + isPlaying);
-  console.log('duration:' + duration);
+  const handleStopEarningOnClick = () => {
+    setPlaying(false);
+  };
+
+  // useEffect(() => {
+  //   console.log(isReady);
+  //   console.log(playerRef.current?.player?.isPlaying);
+  //   if (!playerRef.current?.player?.isPlaying && isReady) {
+  //     console.log('dfasdf');
+  //     console.log(Math.floor(Math.random() * 100000).toString());
+  //     setKey(Math.random().toString());
+  //     handlePlay();
+  //   }
+  // }, []);
 
   return (
     <>
@@ -132,17 +154,19 @@ const Player: Page = () => {
 
       <Box component="main">
         <Container sx={{ paddingTop: '1rem', paddingLeft: '0px', paddingRight: '0px' }}>
-          <Stack direction="row" justifyContent="space-between" sx={{ px: 2 }}>
-            <Box>
-              <Button variant="outlined" size="small">
-                View Musician PFP
-              </Button>
-            </Box>
-            <Box>
-              <Button variant="outlined" size="small">
-                Change Gear
-              </Button>
-            </Box>
+          <Stack direction="row" justifyContent="center">
+            {playerRef.current?.player?.isPlaying && (
+              <Stack direction={'row'} justifyContent="center" alignItems="center" spacing={1}>
+                <EarningIndicatorIcon style={{ maxWidth: '0.9rem' }} />
+                <span style={{ color: 'white', fontSize: '1.1rem', fontWeight: 'bolder' }}>Earning</span>
+              </Stack>
+            )}
+            {!playerRef.current?.player?.isPlaying && (
+              <Stack direction={'row'} justifyContent="center" alignItems="center" spacing={1}>
+                <StopEarningIndicatorIcon style={{ maxWidth: '0.9rem' }} />
+                <span style={{ color: 'white', fontSize: '1.1rem', fontWeight: 'bolder' }}>Not Earning</span>
+              </Stack>
+            )}
           </Stack>
           <section className={style.nftInfoSection}>
             <div className={style.nftInfoWrapper}>
@@ -150,6 +174,7 @@ const Player: Page = () => {
                 <div className={style.nftMedia}>
                   <div className={styleBase.playerGhost}>
                     <ReactPlayer
+                      key={key}
                       ref={playerRef}
                       url={
                         'https://uat-storage.label-nft.com/output/nft-media/6251785fb6629d36064f25c7/1654743350236.mpeg'
@@ -162,6 +187,9 @@ const Player: Page = () => {
                       onEnded={handleEndMedia}
                       onPlay={handlePlay}
                       onPause={handlePause}
+                      onReady={handleReady}
+                      onBufferEnd={handleBufferEnd}
+                      onStart={handleStart}
                       playsinline
                     />
                   </div>
@@ -204,7 +232,7 @@ const Player: Page = () => {
                         <div className={style.nftPreview}>
                           <Image
                             alt="Image"
-                            src="/images/headphone_basic.png"
+                            src="/images/pfp-big-1.png"
                             layout="fill"
                             objectFit="cover"
                             className={classNames(
@@ -236,10 +264,27 @@ const Player: Page = () => {
               </div>
             </div>
           </section>
-          <Stack justifyContent="center" alignItems="center">
-            <Button>earn</Button>
+          <Stack direction={'row'} justifyContent="center" alignItems={'center'} spacing={2} sx={{ px: 2 }}>
+            <Button
+              variant="contained"
+              sx={{ px: 3, backgroundColor: 'white', color: 'black', width: '100%', minHeight: '2rem' }}
+              onClick={handleStopEarningOnClick}
+            >
+              stop earning
+            </Button>
+            <Button
+              variant="outlined"
+              startIcon={<ChangeGearIcon />}
+              sx={{ px: 3, color: 'white', borderColor: 'white', width: '100%', minHeight: '2rem' }}
+            >
+              swap gear
+            </Button>
           </Stack>
         </Container>
+        <div style={{ position: 'relative' }} />
+        <div>
+          <SwipeableEdgeDrawer />
+        </div>
       </Box>
     </>
   );

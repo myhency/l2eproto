@@ -26,9 +26,6 @@ function ScrollTop() {
     setCurrentActive(router.pathname);
   }, [router]);
 
-  console.log(currentActive);
-  console.log(currentActive === '/');
-
   const colorByActiveState = `${currentActive === '/inventory' ? 'white' : '#ffffff3b'}`;
 
   return (
