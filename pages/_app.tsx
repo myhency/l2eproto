@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import { Fragment } from 'react';
 import type { Page } from '../types/page';
 import { AuthConsumer, AuthProvider } from '../contexts/jwt-context';
+import wrapper from '../redux/store';
 
 import '@styles/swiper.styles.css';
 import '@styles/global.scss';
@@ -37,4 +38,4 @@ const MyApp = ({ Component, pageProps }: Props) => {
   // return getLayout(<Layout><Component {...pageProps} /></Layout>)
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

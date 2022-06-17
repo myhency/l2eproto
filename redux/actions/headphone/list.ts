@@ -1,0 +1,26 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { IHeadphone } from '../../interfaces';
+
+const headphones = [
+  { id: '#16452324', image: '/images/headphone_gold.png', level: 5, energy: '100%', type: 'rare' },
+  { id: '#24568454235', image: '/images/headphone_none.png', level: 1, energy: '100%', type: 'common' },
+  { id: '#3347545', image: '/images/headphone_basic.png', level: 20, energy: '100%', type: 'uncommon' },
+];
+
+const TimeSleep = (time = 0) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, time);
+  });
+};
+
+export const fetchHeadphonesAction = createAsyncThunk(
+  'headphone/fetchHeadphones',
+  async (): Promise<Array<IHeadphone>> => {
+    await TimeSleep(0);
+
+    return headphones;
+  }
+);

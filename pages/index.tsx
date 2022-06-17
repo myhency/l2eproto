@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head';
 import NextLink from 'next/link';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AuthGuard } from '@components/authentication/auth-guard';
 import { MainLayout } from '@layouts/main-layout';
 import { Page } from '../types/page';
@@ -21,6 +21,11 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Navigation, Pagination } from 'swiper';
+import { useDispatch } from 'react-redux';
+import useAppSelector from '@hooks/use-app-selector';
+import { IHeadphone, IHeadphoneReducer } from 'redux/interfaces';
+import { fetchHeadphonesAction } from 'redux/actions/headphone';
+import { AppDispatch } from 'redux/store';
 
 const earningCap = {
   dailyMax: 50,
@@ -32,14 +37,24 @@ const energyCap = {
   currentEnergy: 1,
 };
 
-const headphones = [
-  { id: '#16452324', image: '/images/headphone_gold.png', level: 5, energy: '100%', type: 'rare' },
-  { id: '#24568454235', image: '/images/headphone_none.png', level: 1, energy: '100%', type: 'common' },
-  { id: '#3347545', image: '/images/headphone_basic.png', level: 20, energy: '100%', type: 'uncommon' },
-];
+// const headphones = [
+//   { id: '#16452324', image: '/images/headphone_gold.png', level: 5, energy: '100%', type: 'rare' },
+//   { id: '#24568454235', image: '/images/headphone_none.png', level: 1, energy: '100%', type: 'common' },
+//   { id: '#3347545', image: '/images/headphone_basic.png', level: 20, energy: '100%', type: 'uncommon' },
+// ];
 
 const Home: Page = () => {
   const [val, setVal] = useState(true);
+  const dispatch: AppDispatch = useDispatch();
+  const { headphones } = useAppSelector<IHeadphoneReducer | null>((state) => state.headphone);
+  const pending = useAppSelector<boolean>((state) => state.headphone.pending);
+
+  useEffect(() => {
+    console.log('sdfsdf');
+    dispatch(fetchHeadphonesAction());
+  }, [dispatch]);
+
+  console.log(pending);
 
   return (
     <>
