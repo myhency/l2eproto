@@ -1,12 +1,14 @@
 import { HYDRATE } from 'next-redux-wrapper';
 import { combineReducers, AnyAction } from '@reduxjs/toolkit';
 
-import { IHeadphoneReducer } from '../interfaces';
+import { IHeadphoneReducer, IPlaylistReducer } from '../interfaces';
 
 import headphone from './headphone';
+import playlist from './playlist';
 
 export interface IState {
   headphone: IHeadphoneReducer;
+  playlist: IPlaylistReducer;
 }
 
 const rootReducer = (state: IState | undefined, action: AnyAction) => {
@@ -22,6 +24,7 @@ const rootReducer = (state: IState | undefined, action: AnyAction) => {
     default: {
       const combineReducer = combineReducers({
         headphone: headphone.reducer,
+        playlist: playlist.reducer,
       });
       return combineReducer(state, action);
     }

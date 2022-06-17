@@ -10,6 +10,7 @@ interface SampleNavBarProps {
 }
 
 export const SampleNavBar = ({ onOpenMyProfile, onOpenMyWallet }: SampleNavBarProps) => {
+  // TODO. make goback not go home when ChevronLeftIcon is clicked
   return (
     <>
       <AppBar elevation={0} position="fixed" sx={{ userDrag: 'none', backgroundColor: 'rgba(255,255,255,0)' }}>
@@ -24,7 +25,7 @@ export const SampleNavBar = ({ onOpenMyProfile, onOpenMyWallet }: SampleNavBarPr
             </Stack>
             <Stack flexGrow={1} justifyContent="center" style={{ position: 'relative' }}>
               <span
-                style={{ fontSize: 'large', fontWeight: '900', fontFamily: 'Gilroy-ExtraBold', textAlign: 'center' }}
+                style={{ fontSize: '1.3rem', fontWeight: '900', fontFamily: 'Gilroy-ExtraBold', textAlign: 'center' }}
               >
                 Playlist
               </span>

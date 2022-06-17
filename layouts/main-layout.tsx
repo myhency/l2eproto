@@ -97,7 +97,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
             pullDownContent={<PullDownContent />}
             releaseContent={<ReleaseContent />}
             refreshContent={<RefreshContent />}
-            pullDownThreshold={1}
+            pullDownThreshold={100}
             onRefresh={() =>
               new Promise((resolve) => {
                 setTimeout(resolve, 1000);

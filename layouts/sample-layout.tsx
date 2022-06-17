@@ -1,35 +1,40 @@
 import { MyProfileSideBar } from '@components/my-profile/my-profile-side-bar';
 import { useState } from 'react';
-import { MainNavBar } from '@components/main/main-nav-bar';
 import { MyWalletSideBar } from '@components/my-wallet/my-wallet-side-bar';
 import styled from '@emotion/styled';
 import { Box, Slide, Stack } from '@mui/material';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import { PullToRefresh, PullDownContent, ReleaseContent, RefreshContent } from 'react-js-pull-to-refresh';
-import Image from 'next/image';
-import { Energy as EnergyIcon } from '@icons/energy';
 import { SampleNavBar } from '@components/sample/sample-nav-bar';
 import SwipeableEdgeDrawer from '@components/player/swipable-drawer';
 
 interface SampleLayoutProps {
   children: React.ReactElement;
+  noPaddingTop?: boolean | undefined;
 }
 
-const SampleLayoutRoot = styled('div')(() => ({
-  display: 'flex',
-  flex: '1 1 auto',
-  maxWidth: '100%',
-  paddingTop: '4rem',
-}));
+// const SampleLayoutRoot = styled('div')(() => ({
+//   display: 'flex',
+//   flex: '1 1 auto',
+//   maxWidth: '100%',
+//   paddingTop: noPaddingTop ? '0px' : '4rem',
+// }));
+type Props = {
+  noPaddingTop: boolean | undefined;
+};
+const SampleLayoutRoot = styled('div')`
+  display: flex;
+  flex: 1 1 auto;
+  max-width: 100%;
+  padding-top: ${(props: Props) => (props.noPaddingTop ? '0px' : '4rem')};
+`;
 
-export const SampleLayout = ({ children }: SampleLayoutProps) => {
+export const SampleLayout = ({ children, noPaddingTop }: SampleLayoutProps) => {
+  console.log(noPaddingTop);
   const [isMyProfileOpen, setIsMyProfileOpen] = useState(false);
   const [isMyWalletOpen, setIsMyWalletOpen] = useState(false);
-  const trigger = useScrollTrigger();
 
   return (
     <div>
-      <SampleLayoutRoot>
+      <SampleLayoutRoot noPaddingTop={noPaddingTop}>
         <Box
           sx={{
             display: 'flex',
@@ -102,9 +107,9 @@ export const SampleLayout = ({ children }: SampleLayoutProps) => {
           </Stack> */}
           {children}
         </Box>
-        <div>
+        {/* <div>
           <SwipeableEdgeDrawer />
-        </div>
+        </div> */}
       </SampleLayoutRoot>
       <SampleNavBar onOpenMyProfile={() => setIsMyProfileOpen(true)} onOpenMyWallet={() => setIsMyWalletOpen(true)} />
       <MyProfileSideBar onClose={() => setIsMyProfileOpen(false)} open={isMyProfileOpen} />

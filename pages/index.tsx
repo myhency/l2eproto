@@ -6,10 +6,6 @@ import { AuthGuard } from '@components/authentication/auth-guard';
 import { MainLayout } from '@layouts/main-layout';
 import { Page } from '../types/page';
 import { Box, Button, Container, IconButton, Paper, Stack } from '@mui/material';
-import { MusicNote as MusicNoteIcon } from '@icons/music-note';
-import { QuestionMarkCircle as QuestionMarkCircleIcon } from '@icons/question-mark-circle';
-import { LightningBolt as LightningBoltIcon } from '@icons/lightning-bolt';
-import { Inbox as InboxIcon } from '@icons/inbox';
 import { Energy as EnergyIcon } from '@icons/energy';
 // Import Swiper React components
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
@@ -44,13 +40,11 @@ const energyCap = {
 // ];
 
 const Home: Page = () => {
-  const [val, setVal] = useState(true);
   const dispatch: AppDispatch = useDispatch();
   const { headphones } = useAppSelector<IHeadphoneReducer | null>((state) => state.headphone);
   const pending = useAppSelector<boolean>((state) => state.headphone.pending);
 
   useEffect(() => {
-    console.log('sdfsdf');
     dispatch(fetchHeadphonesAction());
   }, [dispatch]);
 
