@@ -65,7 +65,7 @@ const Home: Page = () => {
       </Head>
 
       <Box component="main">
-        <Container sx={{ height: '88vh', paddingTop: '0.5rem', backgroundColor: 'black' }}>
+        <Container sx={{ height: '80vh', paddingTop: '0.5rem', backgroundColor: '#121212' }}>
           <Box>
             <Swiper
               slidesPerView={1}
@@ -78,10 +78,10 @@ const Home: Page = () => {
               modules={[Navigation, Pagination]}
             >
               {headphones.map((v, i) => (
-                <SwiperSlide style={{ backgroundColor: 'rgba(255,255,255,0)' }} key={i}>
+                <SwiperSlide style={{ backgroundColor: '#121212' }} key={i}>
                   <Stack direction="column">
                     <Box sx={{ mb: 3 }}>
-                      <img src={v.image} alt="" style={{ objectFit: 'scale-down', maxHeight: '17vh' }} />
+                      <img src={v.image} alt="" style={{ objectFit: 'cover', minWidth: '15rem', minHeight: '15rem' }} />
                     </Box>
                     <Stack direction={'column'} alignItems="center" justifyContent={'center'} spacing={1}>
                       <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={3}>
@@ -123,91 +123,88 @@ const Home: Page = () => {
               ))}
             </Swiper>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-            {[1, 2, 3, 4].map((v) => (
-              <Box
-                key={v}
-                sx={{
-                  minHeight: '4rem',
-                  aspectRatio: '1 / 1',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: 'lightgrey',
-                  borderRadius: '6px',
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: '12px',
-                    textAlign: 'center',
-                    color: 'black',
-                  }}
-                >
-                  Loot Box
-                </span>
-              </Box>
-            ))}
-          </Box>
-          <Stack spacing={1} sx={{ display: 'flex', flexDirection: 'column', mt: 3 }}>
-            <Stack direction={'row'} justifyContent="space-between">
-              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
-                <img src="/images/lbl-symbol.png" alt="" style={{ width: '1.2rem', height: '1.2rem' }} />
-                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.8rem' }}>0.00</span>
-              </Stack>
-              <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>100.00 LBL</span>
-            </Stack>
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                minHeight: '1rem',
-                backgroundColor: 'rgba(255,255,255,0.2)',
-                borderRadius: '18px',
-              }}
-            />
-            <Stack direction={'row'} justifyContent="space-between">
-              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+          <Stack sx={{ px: 2 }}>
+            <Stack
+              sx={{ display: 'flex', flexDirection: 'row', mt: 3 }}
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Stack flexGrow={1} sx={{ mr: 1 }} spacing={1}>
+                <Stack direction={'row'} justifyContent="space-between">
+                  <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+                    <img src="/images/blb-symbol.png" alt="" style={{ width: '1.2rem', height: '1.2rem' }} />
+                    <span style={{ color: 'white', fontWeight: '900', fontSize: '0.8rem' }}>0.00</span>
+                  </Stack>
+                  <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>
+                    100.00 LBL
+                  </span>
+                </Stack>
                 <div
                   style={{
-                    backgroundColor: 'rgba(255,255,255,0.2)',
-                    borderRadius: '1.5rem',
                     display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    padding: '0.1rem',
+                    width: '100%',
+                    minHeight: '0.6rem',
+                    backgroundImage: 'linear-gradient(180deg, #121212 -42.8%, #FFFFFF 98.21%)',
+                    opacity: '0.2',
+                    borderRadius: '24px',
                   }}
-                >
-                  <EnergyIcon style={{ color: 'white', width: '0.9rem', height: '0.9rem' }} />
-                </div>
-                <span style={{ color: 'white', fontSize: '0.9rem' }}>100%</span>
+                />
               </Stack>
-              <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>6h left</span>
+              <Stack flexGrow={1} sx={{ ml: 1 }} spacing={1}>
+                <Stack direction={'row'} justifyContent="space-between">
+                  <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+                    <div
+                      style={{
+                        backgroundColor: 'rgba(255,255,255,1)',
+                        borderRadius: '1.5rem',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: '0.1rem',
+                      }}
+                    >
+                      <EnergyIcon style={{ color: '#121212', width: '0.9rem', height: '0.9rem' }} />
+                    </div>
+                    <span style={{ color: 'white', fontSize: '0.9rem' }}>100%</span>
+                  </Stack>
+                  <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>6h left</span>
+                </Stack>
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    minHeight: '0.6rem',
+                    backgroundColor: 'rgba(255,255,255,1)',
+                    borderRadius: '24px',
+                    boxShadow: '0rem 0rem 0.4rem #fff',
+                  }}
+                />
+              </Stack>
             </Stack>
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                minHeight: '1rem',
-                backgroundColor: 'rgba(255,255,255,0.6)',
-                borderRadius: '18px',
-              }}
-            />
-          </Stack>
-          <Stack spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <NextLink href="/playlist" passHref>
-                <Button
-                  variant="contained"
-                  sx={{ px: 3, backgroundColor: 'white', color: 'black', width: '100%', minHeight: '4rem' }}
-                >
-                  <span style={{ fontSize: 'large', fontWeight: 'bolder' }}>Go To Playlist</span>
-                </Button>
-              </NextLink>
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <span style={{ fontSize: '0.8rem', textDecoration: 'underline', color: 'white' }}>How to earn?</span>
-            </Box>
+            <Stack spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <NextLink href="/playlist/sample" passHref>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      paddingLeft: '3rem',
+                      paddingRight: '3rem',
+                      backgroundColor: 'white',
+                      color: 'black',
+                      width: '100%',
+                      minHeight: '3.5rem',
+                      borderRadius: '0.5rem',
+                    }}
+                  >
+                    <span style={{ fontSize: 'large', fontWeight: '900', fontFamily: 'Gilroy-ExtraBold' }}>
+                      Go To Playlist
+                    </span>
+                  </div>
+                </NextLink>
+              </Box>
+            </Stack>
           </Stack>
         </Container>
       </Box>

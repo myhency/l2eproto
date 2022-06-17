@@ -131,7 +131,7 @@ function ScrollTop() {
 export const MainNavBar = ({ onOpenMyProfile, onOpenMyWallet }: MainNavBarProps) => {
   return (
     <>
-      <AppBar elevation={0} position="fixed" sx={{ userDrag: 'none', backgroundColor: 'black' }}>
+      <AppBar elevation={0} position="fixed" sx={{ userDrag: 'none', backgroundColor: '#121212' }}>
         <Container>
           <Toolbar disableGutters sx={{ minHeight: 64 }}>
             <Box sx={{ display: 'flex' }}>

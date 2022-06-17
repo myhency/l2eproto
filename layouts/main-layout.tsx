@@ -9,6 +9,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { PullToRefresh, PullDownContent, ReleaseContent, RefreshContent } from 'react-js-pull-to-refresh';
 import { MyProfileAvatar as MyProfileAvatarIcon } from '@icons/myprofile-avatar';
 import { Wallet as WalletIcon } from '@icons/wallet';
+import { Wallet2 as Wallet2Icon } from '@icons/wallet-2';
 
 interface MainLayoutProps {
   children: React.ReactElement;
@@ -39,26 +40,31 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         >
           <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ padding: '1rem' }}>
             <Stack direction="row" alignItems="center" spacing={1}>
-              <MyProfileAvatarIcon style={{ width: '1.5rem', height: '1.5rem' }} />
-              <div
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.2)',
-                  borderRadius: '1rem',
-                  padding: '0 0.1rem 0 0.1rem',
-                }}
-              >
-                <span style={{ color: 'white', fontSize: '0.7rem' }}>00h 00m</span>
-              </div>
+              <img
+                src="/images/user-avatar.png"
+                alt="icon"
+                style={{ width: '1.8rem', height: '1.8rem', objectFit: 'none' }}
+              />
+              <span style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '900', fontSize: '0.75rem' }}>
+                00h 00m
+              </span>
             </Stack>
             <Stack
               spacing={1}
               direction="row"
               style={{
-                backgroundColor: 'rgba(255,255,255,0.2)',
-                borderRadius: '1rem',
-                padding: '0 0.1rem 0 0.1rem',
+                backgroundColor: 'rgba(255,255,255,0.12)',
+                borderRadius: '24px',
               }}
             >
+              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1} sx={{ pl: 1 }}>
+                <img src="/images/blb-symbol.png" alt="" style={{ width: '0.9rem', height: '0.9rem' }} />
+                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0.00</span>
+              </Stack>
+              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+                <img src="/images/lbl-symbol.png" alt="" style={{ width: '0.9rem', height: '0.9rem' }} />
+                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0.00</span>
+              </Stack>
               <Stack
                 direction={'row'}
                 alignItems="center"
@@ -66,16 +72,25 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
                 spacing={1}
                 sx={{ paddingLeft: '0.1rem' }}
               >
-                <img src="/images/bnb-symbol.png" alt="" style={{ width: '1.2rem', height: '1.2rem' }} />
-                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.8rem' }}>0.00</span>
-              </Stack>
-              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
-                <img src="/images/lbl-symbol.png" alt="" style={{ width: '1.2rem', height: '1.2rem' }} />
-                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.8rem' }}>0.00</span>
+                <img src="/images/bnb-symbol.png" alt="" style={{ width: '0.9rem', height: '0.9rem' }} />
+                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0.00</span>
               </Stack>
               <Stack>
-                <WalletIcon style={{ width: '2rem', height: '2rem' }} />
+                <img
+                  src="/images/wallet.png"
+                  alt="icon"
+                  style={{ width: '1.8rem', height: '1.8rem', objectFit: 'none' }}
+                />
               </Stack>
+            </Stack>
+          </Stack>
+          <Stack direction="row" justifyContent="start" alignItems="center" sx={{ px: '1rem', pb: '1rem' }}>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <img
+                src="/images/inventory-icon.png"
+                alt="icon"
+                style={{ width: '1.8rem', height: '1.8rem', objectFit: 'none' }}
+              />
             </Stack>
           </Stack>
           <PullToRefresh

@@ -25,7 +25,7 @@ const playlist = [
   { id: '10', image: '/images/pfp-1.png', name: 'Title 10', creator: 'Artist 10', playTime: '02:32' },
 ];
 
-const drawerBleeding = 16;
+const drawerBleeding = 60;
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
@@ -60,7 +60,7 @@ function SwipeableEdgeDrawer(props) {
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(62% - ${drawerBleeding}px)`,
+            height: `calc(69% - ${drawerBleeding}px)`,
             overflow: 'visible',
           },
         }}
