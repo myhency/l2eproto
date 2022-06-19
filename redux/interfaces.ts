@@ -29,3 +29,19 @@ export interface IPlaylistReducer {
   pending: boolean;
   rejectedMessage?: string;
 }
+
+export interface ISong {
+  id: string;
+  playlistId: string;
+  artistProfilePicture: string;
+  name: string;
+  artist: string;
+  playDuration: string;
+}
+
+export interface ISongReducer {
+  songs?: Array<ISong>;
+  rejected: boolean;
+  pending: boolean;
+  rejectedMessage?: string;
+}

@@ -30,20 +30,22 @@ const Sample: Page = () => {
       </Head>
 
       <Box component="main">
-        <Container sx={{ pt: 2, px: 3 }}>
+        <Container sx={{ pt: 2, pb: 4, px: 3 }}>
           <Grid container spacing={3}>
             {playlists &&
               playlists.map((v, i) => {
                 return (
                   <Grid item xs={6} key={i}>
-                    <NextLink href={`/playlist/list/${v.id}`} passHref>
-                      <Stack direction="column" spacing={1}>
-                        <img src={v.image} alt="" />
-                        <span style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '500', fontSize: '0.9rem' }}>
-                          {v.name}
-                        </span>
-                      </Stack>
-                    </NextLink>
+                    {pending ? null : (
+                      <NextLink href={`/playlist/list/${v.id}`} passHref>
+                        <Stack direction="column" spacing={1}>
+                          <img src={v.image} alt="" />
+                          <span style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '500', fontSize: '0.9rem' }}>
+                            {v.name}
+                          </span>
+                        </Stack>
+                      </NextLink>
+                    )}
                   </Grid>
                 );
               })}

@@ -9,20 +9,24 @@ import { useRouter } from 'next/router';
 import { AppDispatch } from 'redux/store';
 import { useDispatch } from 'react-redux';
 import useAppSelector from '@hooks/use-app-selector';
-import { IPlaylistReducer } from 'redux/interfaces';
+import { IPlaylistReducer, ISongReducer } from 'redux/interfaces';
 import { fetchPlaylistAction } from 'redux/actions/playlist';
+import { fetchSongsByPlaylistIdAction } from 'redux/actions/song/list';
 
 const SampleDetail: Page = () => {
   const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
   const { playlist } = useAppSelector<IPlaylistReducer | null>((state) => state.playlist);
+  const { songs } = useAppSelector<ISongReducer | null>((state) => state.song);
   const pending = useAppSelector<boolean>((state) => state.playlist.pending);
+  const pendingSongs = useAppSelector<boolean>((state) => state.song.pending);
 
   useEffect(() => {
     dispatch(fetchPlaylistAction(router.query.id.toString()));
+    dispatch(fetchSongsByPlaylistIdAction(router.query.id.toString()));
   }, [dispatch, router.query.id]);
 
-  console.log(playlist);
+  console.log(songs);
 
   return (
     <>
@@ -60,6 +64,61 @@ const SampleDetail: Page = () => {
                 <img src="/images/more.svg" alt="icon" style={{ maxWidth: '1.7rem' }} />
               </Stack>
             </Stack>
+            <div style={{ position: 'relative', display: 'block' }}>
+              <Stack
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                spacing={3}
+                style={{ position: 'absolute', overflow: 'hidden' }}
+              >
+                {!pendingSongs && songs
+                  ? songs.map((song, i) => {
+                      return (
+                        <Stack
+                          direction="row"
+                          alignItems="center"
+                          justifyContent="space-between"
+                          spacing={1}
+                          key={i}
+                          sx={{ minWidth: '100vw', px: 3 }}
+                        >
+                          <Stack direction="row" alignItems="center" justifyContent="start" flexGrow={1}>
+                            <img src={song.artistProfilePicture} alt="icon" />
+                            <Stack direction="column" alignItems="start" justifyContent="center">
+                              <div>
+                                <span
+                                  style={{
+                                    color: 'rgba(255, 255, 255, 0.87)',
+                                    fontSize: '0.9rem',
+                                    textAlign: 'left',
+                                    verticalAlign: 'bottom',
+                                  }}
+                                >
+                                  {song.name}
+                                </span>
+                              </div>
+                              <div>
+                                <span
+                                  style={{
+                                    color: 'rgba(255, 255, 255, 0.6)',
+                                    fontSize: '0.8rem',
+                                    textAlign: 'left',
+                                    verticalAlign: 'top',
+                                  }}
+                                >
+                                  {song.artist} {song.id} * {song.playDuration}
+                                </span>
+                              </div>
+                            </Stack>
+                          </Stack>
+                          <img src="/images/more.svg" alt="icon" style={{ maxWidth: '1.7rem' }} />
+                        </Stack>
+                      );
+                    })
+                  : null}
+              </Stack>
+            </div>
           </>
         )}
       </Box>
