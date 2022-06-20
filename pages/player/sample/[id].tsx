@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Container, Stack } from '@mui/material';
+import { Container, Skeleton, Stack, SwipeableDrawer, Typography } from '@mui/material';
 import { Page } from '../../../types/page';
 import Head from 'next/head';
 import React, { useEffect, useRef, useState } from 'react';
@@ -21,6 +21,8 @@ import intervalToDuration from 'date-fns/intervalToDuration';
 import ArtistPFPView from '@components/player/sample/artist-pfp-view';
 import EarnCounterView from '@components/player/sample/earn-couter-view';
 import { fetchUserByIdAction, updateUserEarnByIdAction } from 'redux/actions/user';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Global } from '@emotion/react';
 
 const StyledSlider = styled(SliderUnstyled)(
   ({ theme }) => `
@@ -99,8 +101,9 @@ const SamplePlayer: Page = () => {
   const rejectedUser = useAppSelector<boolean>((state) => state.user.rejected);
   const rejectedMessageUser = useAppSelector<boolean>((state) => state.user.rejectedMessage);
   const playlistId = router.query.id.toString();
+  const [open, setOpen] = React.useState(false);
   const [currentSongsIndex, setCurrentSongsIndex] = useState<number>(0);
-  const [isPlaying, setPlaying] = useState<boolean>(true);
+  const [isPlaying, setPlaying] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
   const [progress, setProgress] = useState<{ playedSeconds: number; played: number }>({
     playedSeconds: 0,
@@ -130,20 +133,20 @@ const SamplePlayer: Page = () => {
     //     battery: '20%',
     //   })
     // );
-  }, [dispatch, playlistId]);
+  }, [dispatch]);
 
   useEffect(() => {
     // console.log(playedParse.minutes);
     // console.log(playedParse.seconds);
     // console.log(user);
     // console.log(earnAmount);
-    const _earnAmount = {
-      playedSeconds: ++earnAmount.playedSeconds,
-      earnedBLB: earnAmount.playedSeconds % 60 === 0 ? earnAmount.earnedBLB + 0.5 : earnAmount.earnedBLB,
-      playedSongs: [],
-    };
-    setEarnAmount({ ..._earnAmount });
-  }, [dispatch, progress]);
+    // const _earnAmount = {
+    //   playedSeconds: ++earnAmount.playedSeconds,
+    //   earnedBLB: earnAmount.playedSeconds % 60 === 0 ? earnAmount.earnedBLB + 0.5 : earnAmount.earnedBLB,
+    //   playedSongs: [],
+    // };
+    // setEarnAmount({ ..._earnAmount });
+  }, [dispatch]);
 
   console.log(earnAmount);
 
@@ -156,6 +159,9 @@ const SamplePlayer: Page = () => {
   };
 
   const handleProgress = (state: { playedSeconds: number; played: number }) => {
+    console.log(state);
+    console.log(progress);
+    if (state == progress) return;
     setProgress(state);
   };
 
@@ -194,12 +200,13 @@ const SamplePlayer: Page = () => {
       <Head>
         <title>SamplePlayer</title>
       </Head>
-
       <Box
         component="main"
         style={{
-          background: 'linear-gradient(180deg, rgba(20, 17, 68, 0.4) 0.87%, #121212 100%, rgba(54, 54, 54, 0.8) 100%)',
-          backdropFilter: 'blur(20px)',
+          // background:
+          //   'linear-gradient(180deg, rgba(20, 17, 68, 0.4) 0.87%, #121212 100%, rgba(54, 54, 54, 0.8) 100%)',
+          // backdropFilter: 'blur(20px)',
+          position: 'relative',
         }}
         sx={{ px: 2 }}
       >
