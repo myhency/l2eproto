@@ -65,7 +65,6 @@ const Player: Page = () => {
 
   const handleReady = () => {
     console.log('handleReady');
-    // setPlaying(true);
   };
 
   const handleStart = () => {

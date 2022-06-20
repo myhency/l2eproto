@@ -2,7 +2,7 @@ export interface IHeadphone {
   id: string;
   image: string;
   level: number;
-  energy: string;
+  battery: string;
   type: string;
 }
 
@@ -33,14 +33,32 @@ export interface IPlaylistReducer {
 export interface ISong {
   id: string;
   playlistId: string;
-  artistProfilePicture: string;
+  artistProfilePicture?: string | null;
+  artistProfileBigPicture?: string | null;
+  url: string;
   name: string;
   artist: string;
   playDuration: string;
 }
 
 export interface ISongReducer {
-  songs?: Array<ISong>;
+  songs?: Array<ISong> | null;
+  rejected: boolean;
+  pending: boolean;
+  rejectedMessage?: string;
+}
+
+export interface IUser {
+  id: string;
+  totalPlayTime: number;
+  totalEarnBLB: number;
+  totalEnergy: number;
+  currentEnergy: number;
+  headphones: Array<IHeadphone>;
+}
+
+export interface IUserReducer {
+  user?: IUser | null;
   rejected: boolean;
   pending: boolean;
   rejectedMessage?: string;

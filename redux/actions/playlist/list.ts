@@ -72,11 +72,9 @@ export const fetchPlaylistsAction = createAsyncThunk('playlist/fetchPlaylists', 
 export const fetchPlaylistAction = createAsyncThunk(
   'playlist/fetchPlaylist',
   async (id: string): Promise<IPlaylist> => {
-    console.log(id);
     await TimeSleep(0);
 
-    const item = playlist.filter((v) => v.id === id);
-    console.log(item);
-    return item[0];
+    const item = playlist.find((v) => v.id === id);
+    return item;
   }
 );
