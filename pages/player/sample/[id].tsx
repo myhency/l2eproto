@@ -21,8 +21,8 @@ import intervalToDuration from 'date-fns/intervalToDuration';
 import ArtistPFPView from '@components/player/sample/artist-pfp-view';
 import EarnCounterView from '@components/player/sample/earn-couter-view';
 import { fetchUserByIdAction, updateUserEarnByIdAction } from 'redux/actions/user';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Global } from '@emotion/react';
+import { useSpring, animated } from 'react-spring';
+import { useDrag } from '@use-gesture/react';
 
 const StyledSlider = styled(SliderUnstyled)(
   ({ theme }) => `
@@ -95,6 +95,7 @@ const StyledSlider = styled(SliderUnstyled)(
 const SamplePlayer: Page = () => {
   const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
+  const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
   const { songs } = useAppSelector<ISongReducer | null>((state) => state.song);
   const pendingSongs = useAppSelector<boolean>((state) => state.song.pending);
   const { user } = useAppSelector<IUserReducer | null>((state) => state.user);
@@ -147,6 +148,10 @@ const SamplePlayer: Page = () => {
     // };
     // setEarnAmount({ ..._earnAmount });
   }, [dispatch]);
+
+  const bind = useDrag(({ down, movement: [mx, my] }) => {
+    api.start({ x: down ? mx : 0, y: down ? my : 0, immediate: down });
+  });
 
   console.log(earnAmount);
 
@@ -324,6 +329,7 @@ const SamplePlayer: Page = () => {
               </Stack>
             </>
           )}
+
           {user && (
             <EarnCounterView
               isPlaying={isPlaying}
