@@ -46,6 +46,6 @@
       ],
     },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/testswipe/index.js", "components/testswipe/index.js"],
   "exclude": ["node_modules"]
 }

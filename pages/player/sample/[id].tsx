@@ -104,7 +104,7 @@ const SamplePlayer: Page = () => {
   const playlistId = router.query.id.toString();
   const [open, setOpen] = React.useState(false);
   const [currentSongsIndex, setCurrentSongsIndex] = useState<number>(0);
-  const [isPlaying, setPlaying] = useState<boolean>(false);
+  const [isPlaying, setPlaying] = useState<boolean>(true);
   const [duration, setDuration] = useState<number>(0);
   const [progress, setProgress] = useState<{ playedSeconds: number; played: number }>({
     playedSeconds: 0,
@@ -218,7 +218,7 @@ const SamplePlayer: Page = () => {
         <Container>
           {!pendingSongs && songs.length > 0 && (
             <>
-              <ArtistPFPView pfpImageUrl={songs[currentSongsIndex].artistProfileBigPicture} />
+              <ArtistPFPView pfpImageUrl={songs[currentSongsIndex].videoUrl} />
               <ReactPlayer
                 ref={playerRef}
                 url={songs[currentSongsIndex].url}

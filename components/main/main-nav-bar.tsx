@@ -17,7 +17,7 @@ interface MainNavBarProps {
   onOpenMyWallet: () => void;
 }
 
-function ScrollTop() {
+export const ScrollTop = () => {
   const router = useRouter();
   const [currentActive, setCurrentActive] = useState(router.pathname);
   const trigger = useScrollTrigger({ threshold: 0 });
@@ -88,7 +88,7 @@ function ScrollTop() {
               </span>
             </Stack>
           </NextLink>
-          <NextLink href="/playlist" passHref>
+          <NextLink href="/playlist/sample" passHref>
             <Stack direction="column" justifyContent="center" alignItems="center">
               <Button>
                 <PlaylistIcon
@@ -126,7 +126,7 @@ function ScrollTop() {
       </Box>
     </Fade>
   );
-}
+};
 
 export const MainNavBar = ({ onOpenMyProfile, onOpenMyWallet }: MainNavBarProps) => {
   return (

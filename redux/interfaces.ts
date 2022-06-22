@@ -39,6 +39,7 @@ export interface ISong {
   name: string;
   artist: string;
   playDuration: string;
+  videoUrl: string;
 }
 
 export interface ISongReducer {

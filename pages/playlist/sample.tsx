@@ -12,6 +12,7 @@ import useAppSelector from '@hooks/use-app-selector';
 import { IPlaylistReducer } from 'redux/interfaces';
 import { fetchPlaylistsAction } from 'redux/actions/playlist';
 import NextLink from 'next/link';
+import { ScrollTop } from '@components/main/main-nav-bar';
 
 const Sample: Page = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -20,8 +21,6 @@ const Sample: Page = () => {
   useEffect(() => {
     dispatch(fetchPlaylistsAction());
   }, [dispatch]);
-
-  console.log(playlists);
 
   return (
     <>
@@ -46,6 +45,7 @@ const Sample: Page = () => {
                         </Stack>
                       </NextLink>
                     )}
+                    <ScrollTop />
                   </Grid>
                 );
               })}
