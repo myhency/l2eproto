@@ -13,8 +13,9 @@ const test = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const isBorder = useSpring({ borderRadius: isOpen ? ' ' : 20 });
+  const isBlur = useSpring({ opacity: isOpen ? 0.2 : 1 });
   const open = () => {
-    api.start({ y: 0, immediate: false, config: { ...config.stiff, round: 1 } });
+    api.start({ y: 0, immediate: false, config: config.slow });
     setIsOpen(true);
   };
   const close = (velocity = 0) => {
@@ -39,7 +40,10 @@ const test = () => {
   );
 
   return (
-    <div className="flex" style={{ overflow: 'hidden', backgroundColor: 'pink', height: '100vh' }}>
+    <div className="flex" style={{ overflow: 'hidden',  height: '100vh' }}>
+      <a.div style={{ marginTop: '100px', backgroundColor: 'black', height: '100vh', color: 'white', ...isBlur }}>
+        asdfasdf
+      </a.div>
       <div
         className={styles.sheet2}
         style={isOpen ? { top: '0px', transition: '1s' } : { top: '-105px', transition: '0.5s' }}

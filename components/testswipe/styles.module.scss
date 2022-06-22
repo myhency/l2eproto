@@ -9,13 +9,14 @@
   touch-action: none;
 }
 .sheet2 {
-  z-index: 100;
+  z-index: 101;
   position: fixed;
   top: 0;
   height: 105px;
   width: 100vw;
   background: rgb(225, 5, 5);
   touch-action: none;
+
 }
 
 .sheet > div {
