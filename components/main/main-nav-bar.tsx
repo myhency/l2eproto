@@ -134,23 +134,68 @@ export const MainNavBar = ({ onOpenMyProfile, onOpenMyWallet }: MainNavBarProps)
       <AppBar elevation={0} position="fixed" sx={{ userDrag: 'none', backgroundColor: '#121212' }}>
         <Container>
           <Toolbar disableGutters sx={{ minHeight: 64 }}>
-            <Box sx={{ display: 'flex' }}>
-              <img src="/images/Frame.svg" alt="icon" />
+            <Box sx={{ display: 'flex', marginLeft: '10px' }}>
+              <img src="/images/FrameText.png" alt="icon" />
             </Box>
             <Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'end' }}>
-              <img
-                src="/images/menu.svg"
-                alt="icon"
-                width="24px"
+              <Stack
+                spacing={1}
+                direction="row"
                 style={{
-                  filter: 'invert(99%) sepia(9%) saturate(18%) hue-rotate(358deg) brightness(110%) contrast(100%)',
+                  backgroundColor: 'rgba(255,255,255,0.12)',
+                  borderRadius: '24px',
+                  height: '26px',
+                  marginTop: '3px',
                 }}
+              >
+                <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1} sx={{ pl: 1 }}>
+                  <img src="/images/blb-symbol.png" alt="" style={{ width: '0.8rem', height: '0.8rem' }} />
+                  <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0</span>
+                </Stack>
+                <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+                  <img src="/images/lbl-symbol.png" alt="" style={{ width: '0.8rem', height: '0.8rem' }} />
+                  <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0</span>
+                </Stack>
+                <Stack
+                  direction={'row'}
+                  alignItems="center"
+                  justifyContent={'center'}
+                  spacing={1}
+                  sx={{ paddingLeft: '0.1rem' }}
+                >
+                  <img src="/images/bnb-symbol.png" alt="" style={{ width: '0.8rem', height: '0.8rem' }} />
+                  <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0</span>
+                </Stack>
+                <Stack>
+                  <img
+                    src="/images/wallet.png"
+                    alt="icon"
+                    style={{ width: '1.8rem', height: '1.8rem', objectFit: 'none', opacity: '0' }}
+                  />
+                </Stack>
+              </Stack>
+              <img
+                src="/images/wallet.png"
+                alt="icon"
+                style={{
+                  width: '1.8rem',
+                  height: '1.8rem',
+                  objectFit: 'none',
+                  position: 'absolute',
+                  right: '34px',
+                  top: '18px',
+                }}
+              />
+              <img
+                src="/images/user-avatar.png"
+                alt="icon"
+                style={{ width: '1.8rem', height: '1.8rem', objectFit: 'none', marginLeft: '6px',marginTop:'1px' }}
               />
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
-      <ScrollTop />
+      {/* <ScrollTop /> */}
     </>
   );
 };

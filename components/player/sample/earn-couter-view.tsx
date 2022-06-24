@@ -2,7 +2,10 @@
 import { Stack } from '@mui/material';
 import { intervalToDuration } from 'date-fns';
 import { formatDuration } from '@utils/string';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Jump from 'react-reveal/Jump';
+import Swing from 'react-reveal/Swing';
+import Tada from 'react-reveal/Tada';
 
 interface Props {
   isPlaying: boolean;
@@ -13,6 +16,14 @@ interface Props {
 const EarnCounterView = ({ isPlaying, totalPlayTime, totalEarnBLB }: Props) => {
   const totalPlayTimeParse = intervalToDuration({ start: 0, end: totalPlayTime * 1000 });
   const formattedTotalPlayTime = formatDuration(totalPlayTimeParse);
+  const [test, setTest] = useState(false);
+
+  useEffect(() => {
+    setTest(true);
+    setTimeout(() => {
+      setTest(false);
+    }, 900);
+  }, [totalEarnBLB]);
 
   return (
     <>
@@ -32,18 +43,41 @@ const EarnCounterView = ({ isPlaying, totalPlayTime, totalEarnBLB }: Props) => {
             </span>
           </Stack>
           <Stack>
-            <span
-              style={{
-                color: '#3CFF96',
-                fontSize: '1.1rem',
-                textAlign: 'left',
-                verticalAlign: 'top',
-                fontFamily: 'Gilroy-ExtraBold',
-                fontWeight: 'bolder',
-              }}
-            >
-              +{totalEarnBLB} BLB
-            </span>
+            {test ? (
+              <Tada>
+                <span
+                  style={{
+                    color: '#3CFF96',
+                    height: '50px',
+                    fontSize: '1.4rem',
+                    textAlign: 'left',
+                    verticalAlign: 'top',
+                    fontFamily: 'Gilroy-ExtraBold',
+                    fontWeight: 'bolder',
+                    translate: '2s',
+                    paddingTop: '11px',
+                  }}
+                >
+                  +{totalEarnBLB} BLB
+                </span>
+              </Tada>
+            ) : (
+              <span
+                style={{
+                  color: '#3CFF96',
+                  height: '50px',
+                  paddingTop: '11px',
+                  fontSize: '1.1rem',
+                  textAlign: 'left',
+                  verticalAlign: 'top',
+                  fontFamily: 'Gilroy-ExtraBold',
+                  fontWeight: 'bolder',
+                  translate: '2s',
+                }}
+              >
+                +{totalEarnBLB} BLB
+              </span>
+            )}
           </Stack>
         </Stack>
       ) : (

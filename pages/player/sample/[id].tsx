@@ -23,6 +23,9 @@ import EarnCounterView from '@components/player/sample/earn-couter-view';
 import { fetchUserByIdAction, updateUserEarnByIdAction } from 'redux/actions/user';
 import { useSpring, animated } from 'react-spring';
 import { useDrag } from '@use-gesture/react';
+import Test from '@components/testswipe/index';
+import { IPlaylistReducer } from 'redux/interfaces';
+import { PlayerSampleNavBar } from '@components/player/sample/player-sample-nav-bar';
 
 const StyledSlider = styled(SliderUnstyled)(
   ({ theme }) => `
@@ -102,6 +105,7 @@ const SamplePlayer: Page = () => {
   const rejectedUser = useAppSelector<boolean>((state) => state.user.rejected);
   const rejectedMessageUser = useAppSelector<boolean>((state) => state.user.rejectedMessage);
   const playlistId = router.query.id.toString();
+  const { playlist } = useAppSelector<IPlaylistReducer | null>((state) => state.playlist);
   const [open, setOpen] = React.useState(false);
   const [currentSongsIndex, setCurrentSongsIndex] = useState<number>(0);
   const [isPlaying, setPlaying] = useState<boolean>(true);
@@ -120,7 +124,6 @@ const SamplePlayer: Page = () => {
   const playedParse = intervalToDuration({ start: 0, end: progress.playedSeconds * 1000 });
   const formattedPlayed = formatDuration(playedParse);
   const playerRef = useRef<ReactPlayer>(null);
-
   useEffect(() => {
     dispatch(fetchSongsByPlaylistIdAction(playlistId));
     dispatch(fetchUserByIdAction('1'));
@@ -135,25 +138,20 @@ const SamplePlayer: Page = () => {
     //   })
     // );
   }, [dispatch]);
-
   useEffect(() => {
-    // console.log(playedParse.minutes);
-    // console.log(playedParse.seconds);
-    // console.log(user);
-    // console.log(earnAmount);
-    // const _earnAmount = {
-    //   playedSeconds: ++earnAmount.playedSeconds,
-    //   earnedBLB: earnAmount.playedSeconds % 60 === 0 ? earnAmount.earnedBLB + 0.5 : earnAmount.earnedBLB,
-    //   playedSongs: [],
-    // };
-    // setEarnAmount({ ..._earnAmount });
-  }, [dispatch]);
+    const _earnAmount = {
+      playedSeconds: ++earnAmount.playedSeconds,
+      earnedBLB: earnAmount.playedSeconds % 10 === 0 ? earnAmount.earnedBLB + 0.5 : earnAmount.earnedBLB,
+      playedSongs: [],
+    };
+    setEarnAmount(_earnAmount);
+  }, [progress]);
 
   const bind = useDrag(({ down, movement: [mx, my] }) => {
     api.start({ x: down ? mx : 0, y: down ? my : 0, immediate: down });
   });
 
-  console.log(earnAmount);
+  // console.log(user);
 
   const handleTogglePlay = () => {
     setPlaying((prev) => !prev);
@@ -164,8 +162,7 @@ const SamplePlayer: Page = () => {
   };
 
   const handleProgress = (state: { playedSeconds: number; played: number }) => {
-    console.log(state);
-    console.log(progress);
+    // console.log(progress);
     if (state == progress) return;
     setProgress(state);
   };
@@ -201,7 +198,7 @@ const SamplePlayer: Page = () => {
   };
 
   return (
-    <>
+    <div style={{ height: '100vh', overflow: 'hidden' }}>
       <Head>
         <title>SamplePlayer</title>
       </Head>
@@ -243,7 +240,7 @@ const SamplePlayer: Page = () => {
                       verticalAlign: 'top',
                     }}
                   >
-                    {songs[currentSongsIndex].artist} {songs[currentSongsIndex].id}
+                    {songs[currentSongsIndex].artist}
                   </span>
                 </Stack>
                 <img src="/images/favorite.svg" alt="icon" style={{ width: '2rem' }} />
@@ -339,14 +336,19 @@ const SamplePlayer: Page = () => {
           )}
         </Container>
       </Box>
-    </>
+      {open ? '' : <PlayerSampleNavBar playlistName={playlist?.name} playlistId={playlistId} />}
+      <Test
+        openModal={setOpen}
+        imgUrl={songs[currentSongsIndex]?.videoUrl}
+        artistName={songs[currentSongsIndex]?.artist}
+        playListName={songs[currentSongsIndex]?.name}
+        handelToggle={handleTogglePlay}
+        isPlaying={isPlaying}
+      ></Test>
+    </div>
   );
 };
 
-SamplePlayer.getLayout = (page: React.ReactElement) => (
-  <AuthGuard>
-    <PlayerSampleLayout>{page}</PlayerSampleLayout>
-  </AuthGuard>
-);
+SamplePlayer.getLayout = (page: React.ReactElement) => <AuthGuard>{page}</AuthGuard>;
 
 export default SamplePlayer;

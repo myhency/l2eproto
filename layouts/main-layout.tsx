@@ -38,61 +38,6 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
             width: '100%',
           }}
         >
-          <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ padding: '1rem' }}>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <img
-                src="/images/user-avatar.png"
-                alt="icon"
-                style={{ width: '1.8rem', height: '1.8rem', objectFit: 'none' }}
-              />
-              <span style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '900', fontSize: '0.75rem' }}>
-                00h 00m
-              </span>
-            </Stack>
-            <Stack
-              spacing={1}
-              direction="row"
-              style={{
-                backgroundColor: 'rgba(255,255,255,0.12)',
-                borderRadius: '24px',
-              }}
-            >
-              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1} sx={{ pl: 1 }}>
-                <img src="/images/blb-symbol.png" alt="" style={{ width: '0.9rem', height: '0.9rem' }} />
-                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0.00</span>
-              </Stack>
-              <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
-                <img src="/images/lbl-symbol.png" alt="" style={{ width: '0.9rem', height: '0.9rem' }} />
-                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0.00</span>
-              </Stack>
-              <Stack
-                direction={'row'}
-                alignItems="center"
-                justifyContent={'center'}
-                spacing={1}
-                sx={{ paddingLeft: '0.1rem' }}
-              >
-                <img src="/images/bnb-symbol.png" alt="" style={{ width: '0.9rem', height: '0.9rem' }} />
-                <span style={{ color: 'white', fontWeight: '900', fontSize: '0.75rem' }}>0.00</span>
-              </Stack>
-              <Stack>
-                <img
-                  src="/images/wallet.png"
-                  alt="icon"
-                  style={{ width: '1.8rem', height: '1.8rem', objectFit: 'none' }}
-                />
-              </Stack>
-            </Stack>
-          </Stack>
-          <Stack direction="row" justifyContent="start" alignItems="center" sx={{ px: '1rem', pb: '1rem' }}>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <img
-                src="/images/inventory-icon.png"
-                alt="icon"
-                style={{ width: '1.8rem', height: '1.8rem', objectFit: 'none' }}
-              />
-            </Stack>
-          </Stack>
           <PullToRefresh
             pullDownContent={<PullDownContent />}
             releaseContent={<ReleaseContent />}

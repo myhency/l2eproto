@@ -43,13 +43,21 @@ const Home: Page = () => {
   const dispatch: AppDispatch = useDispatch();
   const { headphones } = useAppSelector<IHeadphoneReducer | null>((state) => state.headphone);
   const pending = useAppSelector<boolean>((state) => state.headphone.pending);
+  const [nowIndex, setNowIndex] = useState(0);
+  const [sec, setSec] = useState(59);
 
   useEffect(() => {
     dispatch(fetchHeadphonesAction());
   }, [dispatch]);
 
-  console.log(pending);
-
+  useEffect(() => {
+    timeChange();
+  }, []);
+  const timeChange = () => {
+    setInterval(() => {
+      setSec((sec) => sec - 1);
+    }, 1000);
+  };
   return (
     <>
       <Head>
@@ -59,13 +67,17 @@ const Home: Page = () => {
       </Head>
 
       <Box component="main">
-        <Container sx={{ height: '80vh', paddingTop: '0.5rem', backgroundColor: '#121212' }}>
-          <Box>
+        <Container sx={{ paddingTop: '0.5rem', backgroundColor: '#121212' }}>
+          <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img src="/images/AudioPOP.png" alt="audioPop" style={{ margin: '21px 0px 25px' }} />
             <Swiper
               slidesPerView={1}
               spaceBetween={8}
-              loop={true}
+              // loop={true}
               navigation={true}
+              onSlideChange={(e) => {
+                setNowIndex(e.realIndex);
+              }}
               flipEffect={{
                 limitRotation: true,
               }}
@@ -74,69 +86,349 @@ const Home: Page = () => {
               {headphones.map((v, i) => (
                 <SwiperSlide style={{ backgroundColor: '#121212' }} key={i}>
                   <Stack direction="column">
-                    <Box sx={{ mb: 3 }}>
-                      <img src={v.image} alt="" style={{ objectFit: 'cover', minWidth: '15rem', minHeight: '15rem' }} />
+                    <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
+                      <img src={v.image} alt="" style={{ objectFit: 'cover', width: '15rem', height: '15rem' }} />
                     </Box>
                     <Stack direction={'column'} alignItems="center" justifyContent={'center'} spacing={1}>
-                      <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={3}>
-                        <span style={{ color: 'white', fontSize: '0.9rem' }}>{`Lv. ${v.level}`}</span>
+                      <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
                         <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
                           <div
                             style={{
-                              backgroundColor: 'white',
-                              borderRadius: '1.5rem',
                               display: 'flex',
                               justifyContent: 'center',
                               alignItems: 'center',
-                              padding: '0.3rem',
+                              borderRadius: '1.5rem',
+                              border: 'solid 1px',
+                              borderColor: 'rgba(255,255,255,0.6)',
+                              paddingLeft: '0.5rem',
+                              paddingRight: '0.5rem',
+                              width: '90px',
                             }}
                           >
-                            <EnergyIcon style={{ color: 'black', width: '0.6rem', height: '0.6rem' }} />
+                            <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.7rem' }}>{v.id}</span>
                           </div>
-                          <span style={{ color: 'white', fontSize: '0.9rem' }}>{v.energy}</span>
+                        </Stack>
+                        <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+                          <div
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              borderRadius: '1.5rem',
+                              border: 'solid 1px',
+                              borderColor: 'rgba(255,255,255,0.6)',
+                              paddingLeft: '0.5rem',
+                              paddingRight: '0.5rem',
+                              width: '90px',
+                              position: 'relative',
+                            }}
+                          >
+                            <div
+                              style={{
+                                backgroundColor: '#3cff96',
+                                width: `${(82 * Number(v.battery.slice(0, v.battery.length - 1))) / 100}px`,
+                                borderRadius: '1.5rem',
+                                height: '12px',
+                                position: 'absolute',
+                                marginLeft: '3px',
+                                left: 0,
+                              }}
+                            />
+                            <EnergyIcon
+                              style={{
+                                color:
+                                  Number(v.battery.slice(0, v.battery.length - 1)) >= 38
+                                    ? 'black'
+                                    : 'rgba(255,255,255,0.6)',
+                                width: '0.6rem',
+                                height: '0.6rem',
+                                zIndex: 10,
+                              }}
+                            />
+                            <span
+                              style={{
+                                color:
+                                  Number(v.battery.slice(0, v.battery.length - 1)) >= 47
+                                    ? 'black'
+                                    : 'rgba(255,255,255,0.6)',
+                                fontSize: '0.7rem',
+                                zIndex: 10,
+                              }}
+                            >
+                              {v.battery.slice(0, 1)}
+                            </span>
+                            <span
+                              style={{
+                                color:
+                                  Number(v.battery.slice(0, v.battery.length - 1)) >= 54
+                                    ? 'black'
+                                    : 'rgba(255,255,255,0.6)',
+                                fontSize: '0.7rem',
+                                zIndex: 10,
+                              }}
+                            >
+                              {v.battery.slice(1, 2)}
+                            </span>
+                            <span
+                              style={{
+                                color:
+                                  Number(v.battery.slice(0, v.battery.length - 1)) >= 63
+                                    ? 'black'
+                                    : 'rgba(255,255,255,0.6)',
+                                fontSize: '0.7rem',
+                                zIndex: 10,
+                              }}
+                            >
+                              {v.battery.slice(2, 3)}
+                            </span>
+                          </div>
+                        </Stack>
+                        <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
+                          <div
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              borderRadius: '1.5rem',
+                              border: 'solid 1px',
+                              borderColor: 'rgba(255,255,255,0.6)',
+                              paddingLeft: '0.5rem',
+                              paddingRight: '0.5rem',
+                              width: '90px',
+                            }}
+                          >
+                            <span
+                              style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.7rem' }}
+                            >{`Lv. ${v.level}`}</span>
+                          </div>
                         </Stack>
                       </Stack>
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          borderRadius: '1.5rem',
-                          border: 'solid 1px',
-                          borderColor: 'rgba(255,255,255,0.6)',
-                          paddingLeft: '0.5rem',
-                          paddingRight: '0.5rem',
-                        }}
-                      >
-                        <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.7rem' }}>{v.id}</span>
-                      </div>
-                      <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.9rem' }}>{v.type}</span>
                     </Stack>
                   </Stack>
                 </SwiperSlide>
               ))}
             </Swiper>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '20px' }}>
+              {[0, 1, 2, 3, 4].map((value, i) => {
+                return (
+                  <div key={i}>
+                    {value === nowIndex ? (
+                      <img src="/images/activeNavigatorDot.png" alt="" />
+                    ) : (
+                      <img src="/images/navigatorDot.png" alt="" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </Box>
           <Stack sx={{ px: 2 }}>
             <Stack
-              sx={{ display: 'flex', flexDirection: 'row', mt: 3 }}
+              style={{
+                display: 'flex',
+                width: '100%',
+                flexDirection: 'row',
+                justifyContent: ' space-evenly',
+                marginTop: '30px',
+                paddingLeft: '5px',
+                paddingRight: '5px',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  backgroundColor: 'black',
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '5px',
+                  fontSize: '12px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  lineHeight: '15px',
+                  color: 'rgba(255,255,255,0.6)',
+                }}
+              >
+                <div>Loot</div>
+                <div>Box</div>
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  backgroundColor: 'black',
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '5px',
+                  fontSize: '12px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  lineHeight: '15px',
+                  color: 'rgba(255,255,255,0.6)',
+                }}
+              >
+                <div>Loot</div>
+                <div>Box</div>
+              </div>{' '}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  backgroundColor: 'black',
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '5px',
+                  fontSize: '12px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  lineHeight: '15px',
+                  color: 'rgba(255,255,255,0.6)',
+                }}
+              >
+                <div>Loot</div>
+                <div>Box</div>
+              </div>{' '}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  backgroundColor: 'black',
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '5px',
+                  fontSize: '12px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  lineHeight: '15px',
+                  color: 'rgba(255,255,255,0.6)',
+                }}
+              >
+                <div>Loot</div>
+                <div>Box</div>
+              </div>
+            </Stack>
+
+            <Stack
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                width: '100%',
+                justifyContent: 'space-around',
+                marginTop: '40px',
+                paddingLeft: '30px',
+                paddingRight: '30px',
+              }}
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div
+                  style={{
+                    fontFamily: 'Gilroy',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '30px',
+                    lineHeight: '34px',
+                    color: 'white',
+                  }}
+                >
+                  03
+                </div>
+                <div
+                  style={{
+                    fontSize: '13px',
+                    color: 'rgba(255,255,255,0.6)',
+                  }}
+                >
+                  Days
+                </div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div
+                  style={{
+                    fontFamily: 'Gilroy',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '30px',
+                    lineHeight: '34px',
+                    color: 'white',
+                  }}
+                >
+                  10
+                </div>
+                <div
+                  style={{
+                    fontSize: '13px',
+                    color: 'rgba(255,255,255,0.6)',
+                  }}
+                >
+                  hours
+                </div>
+              </div>{' '}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div
+                  style={{
+                    fontFamily: 'Gilroy',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '30px',
+                    lineHeight: '34px',
+                    color: 'white',
+                  }}
+                >
+                  59
+                </div>
+                <div
+                  style={{
+                    fontSize: '13px',
+                    color: 'rgba(255,255,255,0.6)',
+                  }}
+                >
+                  mins
+                </div>
+              </div>{' '}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div
+                  style={{
+                    fontFamily: 'Gilroy',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '30px',
+                    lineHeight: '34px',
+                    color: 'white',
+                    width:'30px'
+                  }}
+                >
+                  03
+                </div>
+                <div
+                  style={{
+                    fontSize: '13px',
+                    color: 'rgba(255,255,255,0.6)',
+                  }}
+                >
+                  secs
+                </div>
+              </div>
+            </Stack>
+
+            <Stack
+              sx={{ display: 'flex', flexDirection: 'column', mt: 3 }}
               alignItems="center"
               justifyContent="space-between"
             >
-              <Stack flexGrow={1} sx={{ mr: 1 }} spacing={1}>
+              <Stack flexGrow={1} spacing={1}>
                 <Stack direction={'row'} justifyContent="space-between">
                   <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
                     <img src="/images/blb-symbol.png" alt="" style={{ width: '1.2rem', height: '1.2rem' }} />
                     <span style={{ color: 'white', fontWeight: '900', fontSize: '0.8rem' }}>0.00</span>
                   </Stack>
                   <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>
-                    100.00 LBL
+                    100.00 BLB
                   </span>
                 </Stack>
                 <div
                   style={{
                     display: 'flex',
-                    width: '100%',
+                    width: '360px',
                     minHeight: '0.6rem',
                     backgroundImage: 'linear-gradient(180deg, #121212 -42.8%, #FFFFFF 98.21%)',
                     opacity: '0.2',
@@ -144,7 +436,7 @@ const Home: Page = () => {
                   }}
                 />
               </Stack>
-              <Stack flexGrow={1} sx={{ ml: 1 }} spacing={1}>
+              <Stack flexGrow={1} spacing={1} sx={{ mt: 2 }}>
                 <Stack direction={'row'} justifyContent="space-between">
                   <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
                     <div
@@ -159,20 +451,55 @@ const Home: Page = () => {
                     >
                       <EnergyIcon style={{ color: '#121212', width: '0.9rem', height: '0.9rem' }} />
                     </div>
-                    <span style={{ color: 'white', fontSize: '0.9rem' }}>100%</span>
+                    <span style={{ color: 'white', fontSize: '0.9rem' }}>
+                      {headphones.length > 0 &&
+                        Number(headphones[nowIndex].battery.slice(0, headphones[nowIndex].battery.length - 1))}
+                      /100
+                    </span>
                   </Stack>
-                  <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>6h left</span>
+                  <span style={{ color: 'rgba(255,255,255,0.6)', fontWeight: '900', fontSize: '0.8rem' }}>
+                    Total Battery
+                  </span>
                 </Stack>
                 <div
                   style={{
                     display: 'flex',
-                    width: '100%',
-                    minHeight: '0.6rem',
-                    backgroundColor: 'rgba(255,255,255,1)',
-                    borderRadius: '24px',
-                    boxShadow: '0rem 0rem 0.4rem #fff',
+                    width: '360px',
                   }}
-                />
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '360px',
+                      minHeight: '0.6rem',
+                      backgroundImage: 'linear-gradient(180deg, #121212 -42.8%, #FFFFFF 98.21%)',
+                      opacity: '0.2',
+                      borderRadius: '24px',
+                    }}
+                  />
+                  <div
+                    style={
+                      headphones.length > 0
+                        ? {
+                            position: 'absolute',
+                            display: 'flex',
+                            width: `${
+                              (360 *
+                                Number(
+                                  headphones[nowIndex].battery.slice(0, headphones[nowIndex].battery.length - 1)
+                                )) /
+                              100
+                            }px`,
+
+                            minHeight: '0.6rem',
+                            backgroundColor: 'rgba(255,255,255,1)',
+                            borderRadius: '24px',
+                            boxShadow: '0rem 0rem 0.4rem #fff',
+                          }
+                        : {}
+                    }
+                  />
+                </div>
               </Stack>
             </Stack>
             <Stack spacing={1} sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
@@ -187,7 +514,7 @@ const Home: Page = () => {
                       paddingRight: '3rem',
                       backgroundColor: 'white',
                       color: 'black',
-                      width: '100%',
+                      width: '70%',
                       minHeight: '3.5rem',
                       borderRadius: '0.5rem',
                     }}

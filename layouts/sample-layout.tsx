@@ -111,6 +111,7 @@ export const SampleLayout = ({ children, noPaddingTop }: SampleLayoutProps) => {
           <SwipeableEdgeDrawer />
         </div> */}
       </SampleLayoutRoot>
+
       <SampleNavBar onOpenMyProfile={() => setIsMyProfileOpen(true)} onOpenMyWallet={() => setIsMyWalletOpen(true)} />
       <MyProfileSideBar onClose={() => setIsMyProfileOpen(false)} open={isMyProfileOpen} />
       <MyWalletSideBar onClose={() => setIsMyWalletOpen(false)} open={isMyWalletOpen} />
