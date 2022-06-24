@@ -1,0 +1,8 @@
+@import '@styles/functions';
+@import '@styles/variables.scss';
+@import '@styles/mixins';
+
+
+.noScorll::-webkit-scrollbar {
+    display: none;
+}
