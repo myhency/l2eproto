@@ -38,9 +38,9 @@ const SampleDetail: Page = () => {
   }, [dispatch, playlistId]);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    document.body.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      document.body.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -49,16 +49,16 @@ const SampleDetail: Page = () => {
   };
 
   const handleScroll = () => {
-    if (window.scrollY > 115) {
+    if (document.body.scrollTop > 115) {
       setChangeHeader(true);
     } else {
       setChangeHeader(false);
     }
 
-    setScroll(window.scrollY);
+    setScroll(document.body.scrollTop);
   };
   const handleGoTop = () => {
-    window.scrollTo({
+    document.body.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
@@ -66,7 +66,7 @@ const SampleDetail: Page = () => {
   };
 
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <Head>
         <title>SampleDetail</title>
       </Head>
@@ -182,59 +182,11 @@ const SampleDetail: Page = () => {
                   style={{
                     position: 'absolute',
                     top: '115%',
-                    height: `${height / 2}px`,
-
+                    height: 'auto',
                     paddingTop: '0.2rem',
                     paddingBottom: '2rem',
                   }}
                 >
-                  <Stack direction="column" alignItems="center" justifyContent="center" spacing={3}>
-                    {!pendingSongs && songs
-                      ? songs.map((song, i) => {
-                          return (
-                            <Stack
-                              direction="row"
-                              alignItems="center"
-                              justifyContent="space-between"
-                              spacing={1}
-                              key={i}
-                              sx={{ minWidth: '100vw', px: 3 }}
-                            >
-                              <Stack direction="row" alignItems="center" justifyContent="start" flexGrow={1}>
-                                <img src={song.artistProfilePicture} alt="icon" />
-                                <Stack direction="column" alignItems="start" justifyContent="center">
-                                  <div>
-                                    <span
-                                      style={{
-                                        color: 'rgba(255, 255, 255, 0.87)',
-                                        fontSize: '0.9rem',
-                                        textAlign: 'left',
-                                        verticalAlign: 'bottom',
-                                      }}
-                                    >
-                                      {song.name}
-                                    </span>
-                                  </div>
-                                  <div>
-                                    <span
-                                      style={{
-                                        color: 'rgba(255, 255, 255, 0.6)',
-                                        fontSize: '0.8rem',
-                                        textAlign: 'left',
-                                        verticalAlign: 'top',
-                                      }}
-                                    >
-                                      {song.artist} {song.id} * {song.playDuration}
-                                    </span>
-                                  </div>
-                                </Stack>
-                              </Stack>
-                              <img src="/images/more.svg" alt="icon" style={{ maxWidth: '1.7rem' }} />
-                            </Stack>
-                          );
-                        })
-                      : null}
-                  </Stack>
                   <Stack direction="column" alignItems="center" justifyContent="center" spacing={3}>
                     {!pendingSongs && songs
                       ? songs.map((song, i) => {

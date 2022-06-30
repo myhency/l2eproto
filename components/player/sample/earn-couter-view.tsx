@@ -10,19 +10,53 @@ import Tada from 'react-reveal/Tada';
 interface Props {
   isPlaying: boolean;
   totalPlayTime: number;
-  totalEarnBLB: number;
+  totalEarnBLB: string;
 }
 
 const EarnCounterView = ({ isPlaying, totalPlayTime, totalEarnBLB }: Props) => {
   const totalPlayTimeParse = intervalToDuration({ start: 0, end: totalPlayTime * 1000 });
   const formattedTotalPlayTime = formatDuration(totalPlayTimeParse);
   const [test, setTest] = useState(false);
+  const [plz, setplz] = useState<any>(totalEarnBLB);
 
   useEffect(() => {
-    setTest(true);
-    setTimeout(() => {
-      setTest(false);
-    }, 900);
+    const numTotalEarnBLB = Number(totalEarnBLB);
+
+    if (plz !== totalEarnBLB) {
+      setplz((numTotalEarnBLB - 0.4).toFixed(2));
+      setTest(true);
+      setTimeout(() => {
+        setTest(false);
+      }, 500);
+      setTimeout(() => {
+        setplz((numTotalEarnBLB - 0.3).toFixed(2));
+        setTest(true);
+      }, 600);
+      setTimeout(() => {
+        setTest(false);
+      }, 1100);
+      setTimeout(() => {
+        setplz((numTotalEarnBLB - 0.2).toFixed(2));
+        setTest(true);
+      }, 1200);
+      setTimeout(() => {
+        setTest(false);
+      }, 1700);
+      setTimeout(() => {
+        setplz((numTotalEarnBLB - 0.1).toFixed(2));
+        setTest(true);
+      }, 1800);
+      setTimeout(() => {
+        setTest(false);
+      }, 2300);
+      setTimeout(() => {
+        setplz(numTotalEarnBLB.toFixed(2));
+        setTest(true);
+      }, 2400);
+      setTimeout(() => {
+        setTest(false);
+      }, 2900);
+    }
   }, [totalEarnBLB]);
 
   return (
@@ -58,7 +92,7 @@ const EarnCounterView = ({ isPlaying, totalPlayTime, totalEarnBLB }: Props) => {
                     paddingTop: '11px',
                   }}
                 >
-                  +{totalEarnBLB} BLB
+                  +{plz} BLB
                 </span>
               </Tada>
             ) : (
@@ -75,7 +109,7 @@ const EarnCounterView = ({ isPlaying, totalPlayTime, totalEarnBLB }: Props) => {
                   translate: '2s',
                 }}
               >
-                +{totalEarnBLB} BLB
+                +{plz} BLB
               </span>
             )}
           </Stack>

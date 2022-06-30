@@ -140,32 +140,41 @@ body {
     font-size: 16px;
     color: var(--color-primary);
     font-family: $font-gilroy-regular;
+    height: 100%;
+    overflow-x: hidden;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+
+
+
 }
 
 * {
     scroll-margin-top: $header-height;
 }
 
-::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-    background: var(--background-scrollbar);
-    border-radius: 10px;
-}
+// ::-webkit-scrollbar {
+//     width: 5px;
+//     height: 5px;
+//     background: var(--background-scrollbar);
+//     border-radius: 10px;
+// }
 
-::-webkit-scrollbar-track {
-    border-radius: 10px;
-    width: 10px;
-}
+// ::-webkit-scrollbar-track {
+//     border-radius: 10px;
+//     width: 10px;
+// }
 
-::-webkit-scrollbar-thumb {
-    background: var(--background-scrollbar-thumb);
-    border-radius: 6px;
-}
+// ::-webkit-scrollbar-thumb {
+//     background: var(--background-scrollbar-thumb);
+//     border-radius: 6px;
+// }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--background-scrollbar-thumb);
-}
+// ::-webkit-scrollbar-thumb:hover {
+//     background: var(--background-scrollbar-thumb);
+// }
 .r-message {
     .ant-message-custom-content {
         display: flex;

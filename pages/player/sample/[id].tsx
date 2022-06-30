@@ -114,6 +114,7 @@ const SamplePlayer: Page = () => {
     playedSeconds: 0,
     played: 0,
   });
+  const [realPlayedTime, setRealPlayedTime] = useState(0);
   const [earnAmount, setEarnAmount] = useState<{
     playedSeconds: number;
     earnedBLB: number;
@@ -138,6 +139,7 @@ const SamplePlayer: Page = () => {
     //   })
     // );
   }, [dispatch]);
+
   useEffect(() => {
     const _earnAmount = {
       playedSeconds: ++earnAmount.playedSeconds,
@@ -145,13 +147,7 @@ const SamplePlayer: Page = () => {
       playedSongs: [],
     };
     setEarnAmount(_earnAmount);
-  }, [progress]);
-
-  const bind = useDrag(({ down, movement: [mx, my] }) => {
-    api.start({ x: down ? mx : 0, y: down ? my : 0, immediate: down });
-  });
-
-  // console.log(user);
+  }, [realPlayedTime]);
 
   const handleTogglePlay = () => {
     setPlaying((prev) => !prev);
@@ -162,7 +158,7 @@ const SamplePlayer: Page = () => {
   };
 
   const handleProgress = (state: { playedSeconds: number; played: number }) => {
-    // console.log(progress);
+    isPlaying && setRealPlayedTime(realPlayedTime + 1);
     if (state == progress) return;
     setProgress(state);
   };
@@ -331,7 +327,7 @@ const SamplePlayer: Page = () => {
             <EarnCounterView
               isPlaying={isPlaying}
               totalPlayTime={user.totalPlayTime + earnAmount.playedSeconds}
-              totalEarnBLB={user.totalEarnBLB + earnAmount.earnedBLB}
+              totalEarnBLB={(user.totalEarnBLB + earnAmount.earnedBLB).toFixed(2)}
             />
           )}
         </Container>

@@ -9,6 +9,9 @@ import { Box, Button, Container, IconButton, Paper, Stack } from '@mui/material'
 import { Energy as EnergyIcon } from '@icons/energy';
 // Import Swiper React components
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import RootBox from '@components/main/rootbox';
+import EmptyBox from '@components/main/rootbox/emptyBox';
+import Timer from '@components/main/timer';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -87,7 +90,11 @@ const Home: Page = () => {
                 <SwiperSlide style={{ backgroundColor: '#121212' }} key={i}>
                   <Stack direction="column">
                     <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
-                      <img src={v.image} alt="" style={{ objectFit: 'cover', width: '15rem', height: '15rem' }} />
+                      <img
+                        src={v.image}
+                        alt=""
+                        style={{ objectFit: 'cover', width: '15rem', height: '15rem', borderRadius: '100%' }}
+                      />
                     </Box>
                     <Stack direction={'column'} alignItems="center" justifyContent={'center'} spacing={1}>
                       <Stack direction={'row'} alignItems="center" justifyContent={'center'} spacing={1}>
@@ -209,10 +216,10 @@ const Home: Page = () => {
               ))}
             </Swiper>
             <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '20px' }}>
-              {[0, 1, 2, 3, 4].map((value, i) => {
+              {headphones.map((value, i) => {
                 return (
                   <div key={i}>
-                    {value === nowIndex ? (
+                    {i === nowIndex ? (
                       <img src="/images/activeNavigatorDot.png" alt="" />
                     ) : (
                       <img src="/images/navigatorDot.png" alt="" />
@@ -223,193 +230,127 @@ const Home: Page = () => {
             </div>
           </Box>
           <Stack sx={{ px: 2 }}>
-            <Stack
-              style={{
-                display: 'flex',
-                width: '100%',
-                flexDirection: 'row',
-                justifyContent: ' space-evenly',
-                marginTop: '30px',
-                paddingLeft: '5px',
-                paddingRight: '5px',
-              }}
-            >
-              <div
+            {nowIndex === 0 ? (
+              <Stack
                 style={{
                   display: 'flex',
-                  flexDirection: 'column',
-                  backgroundColor: 'black',
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '5px',
-                  fontSize: '12px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  lineHeight: '15px',
-                  color: 'rgba(255,255,255,0.6)',
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: ' space-evenly',
+                  marginTop: '30px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
                 }}
               >
-                <div>Loot</div>
-                <div>Box</div>
-              </div>
-              <div
+                <RootBox time={'23h 58m'} blb={4.28} />
+                <EmptyBox />
+                <EmptyBox />
+                <EmptyBox />
+              </Stack>
+            ) : nowIndex === 1 ? (
+              <Stack
                 style={{
                   display: 'flex',
-                  flexDirection: 'column',
-                  backgroundColor: 'black',
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '5px',
-                  fontSize: '12px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  lineHeight: '15px',
-                  color: 'rgba(255,255,255,0.6)',
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: ' space-evenly',
+                  marginTop: '30px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
                 }}
               >
-                <div>Loot</div>
-                <div>Box</div>
-              </div>{' '}
-              <div
+                <RootBox time={'03h 58m'} blb={0.72} />
+                <RootBox time={'10h 20m'} blb={1.97} />
+                <RootBox time={'20h 28m'} blb={3.92} />
+                <EmptyBox />
+              </Stack>
+            ) : nowIndex === 2 ? (
+              <Stack
                 style={{
                   display: 'flex',
-                  flexDirection: 'column',
-                  backgroundColor: 'black',
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '5px',
-                  fontSize: '12px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  lineHeight: '15px',
-                  color: 'rgba(255,255,255,0.6)',
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: ' space-evenly',
+                  marginTop: '30px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
                 }}
               >
-                <div>Loot</div>
-                <div>Box</div>
-              </div>{' '}
-              <div
+                <RootBox time={'5h 52m'} blb={0.98} />
+                <EmptyBox />
+                <EmptyBox />
+                <EmptyBox />
+              </Stack>
+            ) : nowIndex === 3 ? (
+              <Stack
                 style={{
                   display: 'flex',
-                  flexDirection: 'column',
-                  backgroundColor: 'black',
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '5px',
-                  fontSize: '12px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  lineHeight: '15px',
-                  color: 'rgba(255,255,255,0.6)',
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: ' space-evenly',
+                  marginTop: '30px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
                 }}
               >
-                <div>Loot</div>
-                <div>Box</div>
-              </div>
-            </Stack>
+                <RootBox time={'10h 8m'} blb={1.92} />
+                <RootBox time={'20h 18m'} blb={3.84} />
+                <EmptyBox />
+                <EmptyBox />
+              </Stack>
+            ) : nowIndex === 4 ? (
+              <Stack
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: ' space-evenly',
+                  marginTop: '30px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
+                }}
+              >
+                <RootBox time={'23h 58m'} blb={4.28} />
+                <EmptyBox />
+                <EmptyBox />
+                <EmptyBox />
+              </Stack>
+            ) : nowIndex === 5 ? (
+              <Stack
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: ' space-evenly',
+                  marginTop: '30px',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
+                }}
+              >
+                <RootBox time={'1h 18m'} blb={0.28} />
+                <EmptyBox />
+                <EmptyBox />
+                <EmptyBox />
+              </Stack>
+            ) : (
+              ''
+            )}
 
-            <Stack
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                width: '100%',
-                justifyContent: 'space-around',
-                marginTop: '40px',
-                paddingLeft: '30px',
-                paddingRight: '30px',
-              }}
-            >
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div
-                  style={{
-                    fontFamily: 'Gilroy',
-                    fontStyle: 'normal',
-                    fontWeight: '700',
-                    fontSize: '30px',
-                    lineHeight: '34px',
-                    color: 'white',
-                  }}
-                >
-                  03
-                </div>
-                <div
-                  style={{
-                    fontSize: '13px',
-                    color: 'rgba(255,255,255,0.6)',
-                  }}
-                >
-                  Days
-                </div>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div
-                  style={{
-                    fontFamily: 'Gilroy',
-                    fontStyle: 'normal',
-                    fontWeight: '700',
-                    fontSize: '30px',
-                    lineHeight: '34px',
-                    color: 'white',
-                  }}
-                >
-                  10
-                </div>
-                <div
-                  style={{
-                    fontSize: '13px',
-                    color: 'rgba(255,255,255,0.6)',
-                  }}
-                >
-                  hours
-                </div>
-              </div>{' '}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div
-                  style={{
-                    fontFamily: 'Gilroy',
-                    fontStyle: 'normal',
-                    fontWeight: '700',
-                    fontSize: '30px',
-                    lineHeight: '34px',
-                    color: 'white',
-                  }}
-                >
-                  59
-                </div>
-                <div
-                  style={{
-                    fontSize: '13px',
-                    color: 'rgba(255,255,255,0.6)',
-                  }}
-                >
-                  mins
-                </div>
-              </div>{' '}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div
-                  style={{
-                    fontFamily: 'Gilroy',
-                    fontStyle: 'normal',
-                    fontWeight: '700',
-                    fontSize: '30px',
-                    lineHeight: '34px',
-                    color: 'white',
-                    width:'30px'
-                  }}
-                >
-                  03
-                </div>
-                <div
-                  style={{
-                    fontSize: '13px',
-                    color: 'rgba(255,255,255,0.6)',
-                  }}
-                >
-                  secs
-                </div>
-              </div>
-            </Stack>
-
+            {nowIndex === 0 ? (
+              <Timer days={'03'} hours={'10'} mins={'59'} secs={'03'} />
+            ) : nowIndex === 1 ? (
+              <Timer days={'10'} hours={'04'} mins={'30'} secs={'29'} />
+            ) : nowIndex === 2 ? (
+              <Timer days={'04'} hours={'13'} mins={'29'} secs={'09'} />
+            ) : nowIndex === 3 ? (
+              <Timer days={'08'} hours={'02'} mins={'10'} secs={'23'} />
+            ) : nowIndex === 4 ? (
+              <Timer days={'02'} hours={'07'} mins={'23'} secs={'43'} />
+            ) : nowIndex === 5 ? (
+              <Timer days={'11'} hours={'12'} mins={'12'} secs={'02'} />
+            ) : (
+              ''
+            )}
             <Stack
               sx={{ display: 'flex', flexDirection: 'column', mt: 3 }}
               alignItems="center"

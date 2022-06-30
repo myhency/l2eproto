@@ -26,7 +26,7 @@ const MyApp = ({ Component, pageProps }: Props) => {
                 <div>Loading...</div>
               </>
             ) : (
-              getLayout(<Component {...pageProps} />)
+              getLayout(<Component style={{ height: '100%' }} {...pageProps} />)
             )
           }
         </AuthConsumer>

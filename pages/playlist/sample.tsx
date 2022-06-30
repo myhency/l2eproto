@@ -44,16 +44,20 @@ const Sample: Page = () => {
         </div>
         <div
           className={style.noScorll}
-          style={{ display: 'flex', overflow: 'auto', gap: '10px', paddingLeft: '20px', marginBottom: '20px' }}
+          style={{ display: 'flex', overflow: 'auto', paddingLeft: '20px', marginBottom: '20px' }}
         >
           {playlists &&
             playlists.map((v, i) => {
               return (
                 <div key={i}>
-                  {i % 3 === 0 ? (
+                  {i > 7 ? (
                     pending ? null : (
                       <NextLink href={`/playlist/list/${v.id}`} passHref>
-                        <Stack direction="column" spacing={1} style={{ overflow: 'hidden', position: 'relative' }}>
+                        <Stack
+                          direction="column"
+                          spacing={1}
+                          style={{ overflow: 'hidden', position: 'relative', marginRight: '10px' }}
+                        >
                           <img src={v.image} alt="" style={{ height: '200px' }} />
                           <img src={v.image} alt="" style={{ height: '50px', margin: 0, filter: 'blur(26px)' }} />
                           <span
@@ -105,14 +109,14 @@ const Sample: Page = () => {
         >
           Recent Played
         </div>
-        <div className={style.noScorll} style={{ display: 'flex', overflow: 'auto', gap: '10px', paddingLeft: '20px' }}>
+        <div className={style.noScorll} style={{ display: 'flex', overflow: 'auto', paddingLeft: '20px' }}>
           {playlists &&
             playlists.map((v, i) => {
               return (
                 <div key={i}>
                   {pending ? null : (
                     <NextLink href={`/playlist/list/${v.id}`} passHref>
-                      <Stack direction="column" spacing={1}>
+                      <Stack direction="column" spacing={1} style={{ marginRight: '10px' }}>
                         <img src={v.image} alt="" style={{ height: '150px' }} />
                         <span style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '500', fontSize: '0.9rem' }}>
                           {v.name}
@@ -139,15 +143,15 @@ const Sample: Page = () => {
         >
           ASMR
         </div>
-        <div className={style.noScorll} style={{ display: 'flex', overflow: 'auto', gap: '10px', paddingLeft: '20px' }}>
+        <div className={style.noScorll} style={{ display: 'flex', overflow: 'auto', paddingLeft: '20px' }}>
           {playlists &&
             playlists.map((v, i) => {
               return (
                 <div key={i}>
-                  {i % 2 === 0 && i !== 1 ? (
+                  {i > 4 ? (
                     pending ? null : (
                       <NextLink href={`/playlist/list/${v.id}`} passHref>
-                        <Stack direction="column" spacing={1}>
+                        <Stack direction="column" spacing={1} style={{ marginRight: '10px' }}>
                           <img src={v.image} alt="" style={{ height: '150px' }} />
                           <span style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '500', fontSize: '0.9rem' }}>
                             {v.name}

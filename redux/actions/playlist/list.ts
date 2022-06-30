@@ -53,6 +53,41 @@ const playlist = [
     creator: 'LABEL MUSIC',
     numOfSongs: 42,
   },
+  {
+    id: '9',
+    image: '/images/playlist/thumb-chilled-out.png',
+    name: 'Chilled Out',
+    creator: 'LABEL MUSIC',
+    numOfSongs: 42,
+  },
+  {
+    id: '10',
+    image: '/images/playlist/thumb-city-scape-groove.png',
+    name: 'City Scape Groove',
+    creator: 'LABEL MUSIC',
+    numOfSongs: 42,
+  },
+  {
+    id: '11',
+    image: '/images/playlist/thumb-future-is-now.png',
+    name: 'Future Is Now',
+    creator: 'LABEL MUSIC',
+    numOfSongs: 42,
+  },
+  {
+    id: '12',
+    image: '/images/playlist/thumb-old-school-vibes.png',
+    name: 'Old School Vibes',
+    creator: 'LABEL MUSIC',
+    numOfSongs: 42,
+  },
+  {
+    id: '13',
+    image: '/images/playlist/thumb-sounds-of-today.png',
+    name: 'Sounds of Today',
+    creator: 'LABEL MUSIC',
+    numOfSongs: 42,
+  },
 ];
 
 const TimeSleep = (time = 0) => {
