@@ -6,8 +6,9 @@ import { IHeadphone } from 'redux/interfaces';
 interface HeadPhoneData {
   headphone: any;
   cancelButton: () => void;
+  confirmButton: () => void;
 }
-function PickedHeadphone({ headphone, cancelButton }: HeadPhoneData) {
+function PickedHeadphone({ headphone, cancelButton, confirmButton }: HeadPhoneData) {
   return (
     <Box component="main">
       <Container sx={{ paddingTop: '0.5rem' }}>
@@ -320,6 +321,7 @@ function PickedHeadphone({ headphone, cancelButton }: HeadPhoneData) {
                   fontSize: '16px',
                   lineHeight: '24px',
                 }}
+                onClick={confirmButton}
               >
                 Confirm
               </button>

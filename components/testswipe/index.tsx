@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { a, useSpring, config, Spring } from 'react-spring';
 import { useGesture, useDrag } from '@use-gesture/react';
-import { Device } from './device';
-import { CardBack, Card } from './card';
 import styles from './styles.module.scss';
 import { Box, Button, Container, IconButton, Paper, Stack } from '@mui/material';
 import { Energy as EnergyIcon } from '@icons/energy';
@@ -16,6 +14,7 @@ import ArtistPFPView from '@components/player/sample/artist-pfp-view';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { flexbox } from '@mui/system';
 import PickedHeadphone from './pickedHeadphone';
+import ChoiceHeadphone from './choiceHeadphone';
 
 const height = 736;
 
@@ -32,7 +31,8 @@ const test = ({ openModal, imgUrl, artistName, playListName, handelToggle, isPla
   const [{ y }, api] = useSpring(() => ({ y: height }));
   const [isOpen, setIsOpen] = useState(false);
   const { headphones } = useAppSelector<IHeadphoneReducer | null>((state) => state.headphone);
-
+  const [IsOpenChoiceHeadphone, setIsChoiceHeadphone] = useState(false);
+  const [nowHeadphoneIdx, setNowHeadphoneIdx] = useState(1);
   const isBorder = useSpring({ borderRadius: isOpen ? ' ' : 20 });
   const isBlur = useSpring({ opacity: isOpen ? 0.2 : 1 });
   const isBackground = useSpring({ backgroundColor: isOpen ? '#121212' : '#2e2e2e' });
@@ -49,6 +49,7 @@ const test = ({ openModal, imgUrl, artistName, playListName, handelToggle, isPla
   const close = (velocity = 0) => {
     api.start({ y: height, immediate: false, config: { ...config.stiff, velocity } });
     setIsOpen(false);
+    setIsChoiceHeadphone(false);
 
     setTimeout(() => {
       openModal(false);
@@ -74,6 +75,13 @@ const test = ({ openModal, imgUrl, artistName, playListName, handelToggle, isPla
 
   const handleCloseButton = () => {
     close(1);
+  };
+  const handleConfirm = () => {
+    setIsChoiceHeadphone(true);
+  };
+  const handleSwapHeadphone = (choiceIdx) => {
+    setNowHeadphoneIdx(choiceIdx);
+    setIsChoiceHeadphone(false);
   };
 
   return (
@@ -138,7 +146,17 @@ const test = ({ openModal, imgUrl, artistName, playListName, handelToggle, isPla
             borderRadius: '6px',
           }}
         />
-        {headphones.length > 0 ? <PickedHeadphone headphone={headphones[1]} cancelButton={handleCloseButton} /> : ''}
+        {headphones.length > 0 && !IsOpenChoiceHeadphone ? (
+          <PickedHeadphone
+            headphone={headphones[nowHeadphoneIdx]}
+            cancelButton={handleCloseButton}
+            confirmButton={handleConfirm}
+          />
+        ) : headphones.length > 0 && IsOpenChoiceHeadphone ? (
+          <ChoiceHeadphone headphone={headphones} swapButton={handleSwapHeadphone} headphoneIdx={nowHeadphoneIdx} />
+        ) : (
+          ''
+        )}
       </a.div>
     </div>
   );
